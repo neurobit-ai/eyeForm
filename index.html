@@ -15,7 +15,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Contact Form #5</title>
+    <title>eyeForm</title>
   </head>
   <body>
   
@@ -25,40 +25,32 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <div class="row mb-5">
-            <div class="col-md-4 mr-auto">
-              <h3 class="thin-heading mb-4">New York</h3>
-              <p>9757 Aspen Lane
-South Richmond Hill, NY 11419</p>
-            </div>
-            <div class="col-md-6 ml-auto">
-              <h3 class="thin-heading mb-4">Contact Info</h3>
-              <p>T: +1 (291) 939 9321 <br> E: info@mywebsite.com</p>
-            </div>
-          </div>
 
           <div class="row justify-content-center">
             <div class="col-md-12">
               
-              <h3 class="thin-heading mb-4">Message Us</h3>
+              <h3 class="thin-heading mb-4">Input data</h3>
 
               <form class="mb-5" method="post" id="contactForm" name="contactForm">
                 <div class="row">
                   <div class="col-md-6 form-group">
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Your name">
+                    <input type="text" class="form-control" name="patientId" id="patientId" placeholder="Patient ID">
                   </div>
                   <div class="col-md-6 form-group">
-                    <input type="text" class="form-control" name="email" id="email" placeholder="Email">
+                    <input type="date" class="form-control" name="dateOfVisit" id="dateOfVisit">
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12 form-group">
-                    <textarea class="form-control" name="message" id="message" cols="30" rows="2" placeholder="Write your message"></textarea>
+                  <div class="col-md-6 form-group">
+                    <input type="number" step=0.01 class="form-control" name="odDegree" id="odDegree" placeholder="OD Degree">
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="number" step=0.01 class="form-control" name="osDegree" id="osDegree" placeholder="OS Degree">
                   </div>
                 </div>  
                 <div class="row">
                   <div class="col-12">
-                    <input type="submit" value="Send Message" class="btn btn-primary rounded-0 py-2 px-4">
+                    <input type="submit" value="Send Data" class="btn btn-primary rounded-0 py-2 px-4">
                   <span class="submitting"></span>
                   </div>
                 </div>
@@ -66,7 +58,7 @@ South Richmond Hill, NY 11419</p>
 
               <div id="form-message-warning mt-4"></div> 
               <div id="form-message-success">
-                Your message was sent, thank you!
+                Data sent!
               </div>
 
             </div>

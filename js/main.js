@@ -9,20 +9,24 @@ $(function() {
 		if ($('#contactForm').length > 0 ) {
 			$( "#contactForm" ).validate( {
 				rules: {
-					name: "required",
-					email: {
-						required: true,
-						email: true
-					},
-					message: {
-						required: true,
-						minlength: 5
-					}
+					patientId: "required",
+					dateOfVisit: "required",
+					odDegree: "required",
+					osDegree: "required",
+					// name: "required",
+					// email: {
+					// 	required: true,
+					// 	email: true
+					// },
+					// message: {
+					// 	required: true,
+					// 	minlength: 5
+					// }
 				},
 				messages: {
-					name: "Please enter your name",
-					email: "Please enter a valid email address",
-					message: "Please enter a message"
+					// name: "Please enter your name",
+					// email: "Please enter a valid email address",
+					// message: "Please enter a message"
 				},
 				/* submit via ajax */
 				submitHandler: function(form) {		
@@ -31,7 +35,7 @@ $(function() {
 
 					$.ajax({   	
 				      type: "POST",
-				      url: "php/send-email.php",
+				      url: "https://script.google.com/macros/s/AKfycbz3OUsuq8INIJwUgUXuVQsPVqptM5sS65MoXV8q2HDvf4rNETfKrbf4lXbFJO5mJWQv/exec",
 				      data: $(form).serialize(),
 
 				      beforeSend: function() { 
