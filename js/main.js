@@ -44,21 +44,21 @@ $(function() {
 
 					$.ajax({   	
 				      type: "POST",
-				      url: "https://script.google.com/macros/s/AKfycbzt33wi50K2OGoRrtzaTFTL7qB4ereZBhGWf0tZXGwfJQIz0VbHXADJkqzUpM_Sk2Bs/exec",
+				      url: "https://script.google.com/macros/s/AKfycbydz8vHnmbCUstlqAb-bH14hYs3Km0qnB3kL9_0yt6IjJccZPEb6HvgF9hfGsYse9OB/exec",
 				      data: $(form).serialize(),
 
 				      beforeSend: function() { 
 				      	$submit.css('display', 'block').text(waitText);
 				      },
-				      success: function(msg) {
-		               if (msg == 'OK') {
+				      complete: function(msg) {
+		               if (msg == '[object Object]') {
 		               	$('#form-message-warning').hide();
 				            setTimeout(function(){
 		               		$('#contactForm').fadeOut();
-		               	}, 1000);
+		               	}, 100);
 				            setTimeout(function(){
 				               $('#form-message-success').fadeIn();   
-		               	}, 1400);
+		               	}, 1000);
 			               
 			            } else {
 			               $('#form-message-warning').html(msg);
