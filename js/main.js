@@ -9,19 +9,9 @@ $(function() {
 		if ($('#contactForm').length > 0 ) {
 			$( "#contactForm" ).validate( {
 				rules: {
+					caseNo: "required",
 					medRecNo: "required",
 					dateOfVisit: "required",
-					height: "required",
-					od1: "required",
-					os1: "required",
-					od2: "required",
-					os2: "required",
-					od3: "required",
-					os3: "required",
-					od4: "required",
-					os4: "required",
-					od5: "required",
-					os5: "required",
 					// name: "required",
 					// email: {
 					// 	required: true,
@@ -44,7 +34,7 @@ $(function() {
 
 					$.ajax({   	
 				      type: "POST",
-				      url: "https://script.google.com/macros/s/AKfycbxrAJZB-PWX5G1OzvTxDfhNg1jI-Y7xTYsNSZpesrw_PD-oUQvef0YSF3H3ypc_ivD8zw/exec",
+				      url: "https://script.google.com/macros/s/AKfycbz4dgvGSErSF5hUtOLlDvtqcG8B32l7xOIK_z_s9IE5PEcbkCI0CYlvg4syEabeCj_9/exec",
 				      data: $(form).serialize(),
 
 				      beforeSend: function() { 
