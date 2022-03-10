@@ -41,8 +41,10 @@ a {
 .col-form-label {
   color: #000; }
 
-.btn, .form-control, .custom-select {
-  height: 40px; }
+.btn, .form-control {
+  height: 35px; }
+.custom-select {
+  height: 45px; }
 
 .custom-select:active, .custom-select:focus {
   outline: none;
