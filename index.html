@@ -112,7 +112,7 @@
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <select class="custom-select">
+                    <select class="custom-select" name="od1" id="od1">
                       <option selected>右眼最佳矯正視力</option>
                       <option value="0.1">0.1</option>
                       <option value="0.2">0.2</option>
@@ -130,7 +130,7 @@
                     </select>
                   </div>
                   <div class="col-6 form-group">
-                    <select class="custom-select">
+                    <select class="custom-select" name="os1" id="os1">
                       <option selected>左眼最佳矯正視力</option>
                       <option value="0.1">0.1</option>
                       <option value="0.2">0.2</option>
@@ -186,56 +186,30 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-3 form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck1" name="cb1" value="0.01%">
-                      <label class="custom-control-label" for="customCheck1">0.01%</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck2" name="cb5" value="0.1%">
-                      <label class="custom-control-label" for="customCheck2">0.1%</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck3" name="cb9" value="眼鏡">
-                      <label class="custom-control-label" for="customCheck3">眼鏡</label>
-                    </div>
-                  </div>
-                  <div class="col-3 form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck4" name="cb2" value="0.02%">
-                      <label class="custom-control-label" for="customCheck4">0.02%</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck5" name="cb6" value="0.3%">
-                      <label class="custom-control-label" for="customCheck5">0.3%</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck6" name="cb10" value="角塑">
-                      <label class="custom-control-label" for="customCheck6">角塑</label>
-                    </div>
-                  </div>
-                  <div class="col-3 form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck7" name="cb3" value="0.03%">
-                      <label class="custom-control-label" for="customCheck7">0.03%</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck8" name="cb7" value="0.5%">
-                      <label class="custom-control-label" for="customCheck8">0.5%</label>
-                    </div>
-                    <div>
-                      治療方式可複選
-                    </div>
-                  </div>
-                  <div class="col-3 form-group">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck9" name="cb4" value="0.05%">
-                      <label class="custom-control-label" for="customCheck9">0.05%</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="customCheck10" name="cb8" value="1.0%">
-                      <label class="custom-control-label" for="customCheck10">1.0%</label>
-                    </div>
+                  <div class="col-12 form-group">
+                    <select class="custom-select" name="treatment" id="treatment">
+                      <option>治療方式</option>
+                      <optgroup label="眼鏡">
+                        <option>一般眼鏡</option>
+                        <option>近視控制眼鏡</option>
+                      </optgroup>
+                      <optgroup label="散瞳劑">
+                        <option>0.01%</option>
+                        <option>0.02%</option>
+                        <option>0.03%</option>
+                        <option>0.05%</option>
+                        <option>0.1%</option>
+                        <option>0.3%</option>
+                        <option>0.5%</option>
+                        <option>1.0%</option>
+                      </optgroup>
+                      <optgroup label="角膜塑型片">
+                        <option>角膜塑型片</option>
+                      </optgroup>
+                      <optgroup label="隱形眼鏡">
+                        <option>近視控制隱形眼鏡</option>
+                      </optgroup>
+                    </select>
                   </div>
                 </div>
 
