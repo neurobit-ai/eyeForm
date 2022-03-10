@@ -42,7 +42,7 @@ a {
   color: #000; }
 
 .btn, .form-control, .custom-select {
-  height: 50px; }
+  height: 30px; }
 
 .custom-select:active, .custom-select:focus {
   outline: none;
