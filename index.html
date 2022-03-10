@@ -69,39 +69,35 @@
 
                 <div class="row">
                   <div class="col-5 form-group">早產
-                    <input type="radio" name="preterm" id="pretermN" value="否">否
-                    <!-- <label for="pretermN">
+                    <input type="radio" name="preterm" id="pretermN" value="否">
+                    <label for="pretermN">
                       否
-                    </label> -->
-                    <input type="radio" name="preterm" id="pretermY" value="是">是
-                    <!-- <label for="pretermY">
-                      是
-                    </label> -->
-                  </div>
-                  <div class="col-1 form-group">
-                    <input type="number" min=1 step=1 class="form-control" name="pretermW" id="pretermW" placeholder="週">
-                  </div>
-                  <div class="col-6 form-group">
-                    <input type="radio" name="multiple" id="multipleN" value="單">
-                    <label for="multipleN">
-                      單胞胎
                     </label>
-                    <input type="radio" name="multiple" id="multipleY" value="多">
-                    <label for="multipleY">
+                    <input type="radio" name="preterm" id="pretermY" value="是">
+                    <label for="pretermY">
+                      是
+                    </label>
+                  </div>
+                  <div class="col-3 form-group">
+                    <input type="number" min=1 step=1 class="form-control" name="pretermW" id="pretermW" placeholder="週數">
+                  </div>
+                  <div class="col-4 form-group">
+                    <input type="checkbox" name="multiple" id="multiple" value="多">
+                    <label for="multiple">
                       多胞胎
                     </label>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="col-6 form-group">遺傳
+                  <div class="col-5 form-group">遺傳
                     <input type="radio" name="hereditary" id="hereditaryN" value="無">
                     <label for="hereditaryN">
-                      無　
+                      無
                     </label>
                     <input type="radio" name="hereditary" id="hereditaryY" value="有">
                     <label for="hereditaryY">
-                      有　
+                      有
                     </label>
                   </div>
                   <div class="col-3 form-group">
@@ -114,46 +110,76 @@
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <input type="number" min=0.1 max=2 step=0.1 class="form-control" name="od1" id="od1" placeholder="右 最佳矯正視力">
+                    <select class="custom-select">
+                      <option selected>右眼最佳矯正視力</option>
+                      <option value="0.1">0.1</option>
+                      <option value="0.2">0.2</option>
+                      <option value="0.3">0.3</option>
+                      <option value="0.4">0.4</option>
+                      <option value="0.5">0.5</option>
+                      <option value="0.6">0.6</option>
+                      <option value="0.7">0.7</option>
+                      <option value="0.8">0.8</option>
+                      <option value="0.9">0.9</option>
+                      <option value="1.0">1.0</option>
+                      <option value="1.2">1.2</option>
+                      <option value="1.5">1.5</option>
+                      <option value="2.0">2.0</option>
+                    </select>
                   </div>
                   <div class="col-6 form-group">
-                    <input type="number" min=0.1 max=2 step=0.1 class="form-control" name="os1" id="os1" placeholder="左 最佳矯正視力">
+                    <select class="custom-select">
+                      <option selected>左眼最佳矯正視力</option>
+                      <option value="0.1">0.1</option>
+                      <option value="0.2">0.2</option>
+                      <option value="0.3">0.3</option>
+                      <option value="0.4">0.4</option>
+                      <option value="0.5">0.5</option>
+                      <option value="0.6">0.6</option>
+                      <option value="0.7">0.7</option>
+                      <option value="0.8">0.8</option>
+                      <option value="0.9">0.9</option>
+                      <option value="1.0">1.0</option>
+                      <option value="1.2">1.2</option>
+                      <option value="1.5">1.5</option>
+                      <option value="2.0">2.0</option>
+                    </select>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <input type="number" min=-10 max=10 step=0.25 class="form-control" name="od2" id="od2" placeholder="右 球面度數">
+                    <input type="number" min=-10 max=10 step=0.25 class="form-control" name="od2" id="od2" placeholder="　右眼球面度數">
                   </div>
                   <div class="col-6 form-group">
-                    <input type="number" min=-10 max=10 step=0.25 class="form-control" name="os2" id="os2" placeholder="左 球面度數">
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-6 form-group">
-                    <input type="number" min=-7 max=0 step=0.25 class="form-control" name="od3" id="od3" placeholder="右 散光">
-                  </div>
-                  <div class="col-6 form-group">
-                    <input type="number" min=-7 max=0 step=0.25 class="form-control" name="os3" id="os3" placeholder="左 散光">
+                    <input type="number" min=-10 max=10 step=0.25 class="form-control" name="os2" id="os2" placeholder="　左眼球面度數">
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <input type="number" min=0 max=180 step=5 class="form-control" name="od4" id="od4" placeholder="右 軸度">
+                    <input type="number" min=-7 max=0 step=0.25 class="form-control" name="od3" id="od3" placeholder="　右眼散光">
                   </div>
                   <div class="col-6 form-group">
-                    <input type="number" min=0 max=180 step=5 class="form-control" name="os4" id="os4" placeholder="左 軸度">
+                    <input type="number" min=-7 max=0 step=0.25 class="form-control" name="os3" id="os3" placeholder="　左眼散光">
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <input type="number" min=19 max=33 step=0.01 class="form-control" name="od5" id="od5" placeholder="右 軸長">
+                    <input type="number" min=0 max=180 step=1 class="form-control" name="od4" id="od4" placeholder="　右眼軸度">
                   </div>
                   <div class="col-6 form-group">
-                    <input type="number" min=19 max=33 step=0.01 class="form-control" name="os5" id="os5" placeholder="左 軸長">
+                    <input type="number" min=0 max=180 step=1 class="form-control" name="os4" id="os4" placeholder="　左眼軸度">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <input type="number" min=19 max=33 step=0.01 class="form-control" name="od5" id="od5" placeholder="　右眼軸長">
+                  </div>
+                  <div class="col-6 form-group">
+                    <input type="number" min=19 max=33 step=0.01 class="form-control" name="os5" id="os5" placeholder="　左眼軸長">
                   </div>
                 </div>
 
