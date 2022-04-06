@@ -30,11 +30,11 @@ $(function() {
 				/* submit via ajax */
 				submitHandler: function(form) {		
 					var $submit = $('.submitting'),
-						waitText = 'Submitting...';
+						waitText = '上 傳 中 . . .';
 
 					$.ajax({   	
 				      type: "POST",
-				      url: "https://script.google.com/macros/s/AKfycbzS_ub4y4jpJhm7k6_ZUEONYGizvEn5r8xIhlUt8kodsXkh8550FF0kK9eamlOTfxhPrA/exec",
+				      url: "https://script.google.com/macros/s/AKfycbxrUs-eIuURZBcK0XGD3cvfPowlJ5p7wjAIbYhc22knk3eVC81GZldYmdRsc7d_LB5L/exec",
 				      data: $(form).serialize(),
 
 				      beforeSend: function() { 
