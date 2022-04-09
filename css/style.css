@@ -38,6 +38,7 @@ a {
     box-shadow: none;
     border-color: #000; } */
 .form-control{margin-bottom: 10px;}
+.form-label{margin-bottom: 0px;}
 
 .col-form-label {
   margin-left: -20px;
