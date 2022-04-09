@@ -17,7 +17,7 @@
 
     <title>eyeForm</title>
   </head>
-  <body>
+  <body class="bg-light">
   
 
   <div class="content">
@@ -84,13 +84,13 @@
                         <label class="form-label" for="fatherD">父</label>
                       </div>
                       <div class="col-4 form-group">
-                        <input type="number" min=0 step=0.5 class="form-control" name="fatherD" id="fatherD" placeholder="0">
+                        <input type="number" min=5 step=0.5 class="form-control" name="fatherD" id="fatherD" placeholder="< 5.0">
                       </div>
                       <div class="col-1 form-group">
                         <label class="form-label" for="motherD">母</label>
                       </div>
                       <div class="col-4 form-group">
-                        <input type="number" min=0 step=0.5 class="form-control" name="motherD" id="motherD" placeholder="0">
+                        <input type="number" min=5 step=0.5 class="form-control" name="motherD" id="motherD" placeholder="< 5.0">
                       </div>
                     </div>
                   </div>
@@ -127,11 +127,11 @@
                 <div class="row">
                   <div class="col-6 form-group">
                     <label class="form-label" for="od2">右眼球面度數 <span class="form-range-value" id="od2value"></span></label>
-                    <input type="range" class="form-range" min=-10 max=10 step=0.25 name="od2" id="od2">
+                    <input type="range" class="form-range" min=-10 max=2 step=0.25 name="od2" id="od2">
                   </div>
                   <div class="col-6 form-group">
                     <label class="form-label" for="os2">左眼球面度數 <span class="form-range-value" id="os2value"></span></label>
-                    <input type="range" class="form-range" min=-10 max=10 step=0.25 name="os2" id="os2">
+                    <input type="range" class="form-range" min=-10 max=2 step=0.25 name="os2" id="os2">
                   </div>
                 </div>
 
@@ -160,11 +160,11 @@
                 <div class="row">
                   <div class="col-6 form-group">
                     <label class="form-label" for="od5">右眼軸長 <span class="form-range-value" id="od5value"></span></label>
-                    <input type="range" class="form-range" min=19 max=33 step=0.01 name="od5" id="od5">
+                    <input type="number" class="form-control" min=19 max=33 step=0.01 name="od5" id="od5">
                   </div>
                   <div class="col-6 form-group">
                     <label class="form-label" for="os5">左眼軸長 <span class="form-range-value" id="os5value"></span></label>
-                    <input type="range" class="form-range" min=19 max=33 step=0.01 name="os5" id="os5">
+                    <input type="number" class="form-control" min=19 max=33 step=0.01 name="os5" id="os5">
                   </div>
                 </div>
 
