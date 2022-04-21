@@ -181,7 +181,7 @@
                         </select>
                       </div>
                       <div class="col-6 form-group">
-                        <select class="form-select" name="od5dec" id="od5dec">
+                        <select class="form-select" name="od5dec" id="od5dec" disabled>
                           <option value=".00">.00</option>
                           <option value=".01">.01</option>
                           <option value=".02">.02</option>
@@ -477,6 +477,14 @@
         if(this.id[2] == 4) digits = 0;
         outputs[this.id+'value'].innerHTML = Number.parseFloat(this.value).toFixed(digits);
       }
+    }
+    var od5int = document.getElementById("od5int");
+    od5int.onchange = function() {
+      $('#od5dec').prop('disabled', (od5int.value >= 20 && od5int.value <= 30)?false:true);
+    }
+    var os5int = document.getElementById("os5int");
+    os5int.onchange = function() {
+      $('#os5dec').prop('disabled', (os5int.value >= 20 && os5int.value <= 30)?false:true);
     }
   </script>
     
