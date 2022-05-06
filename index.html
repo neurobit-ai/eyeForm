@@ -471,14 +471,40 @@
     var dateOfVisit = document.getElementById('dateOfVisit');
     var dateOfBirth = document.getElementById('dateOfBirth');
     dateOfVisit.oninput = function() {
-      milliseconds = Date.parse(dateOfVisit.value) - Date.parse(dateOfBirth.value);
-      if (!isNaN(milliseconds))
-        document.getElementById('age').placeholder = Math.floor(milliseconds / (1000 * 60 * 60 * 24 * 365.25));
+      if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
+        var dov = dateOfVisit.value.split('-');
+        var dob = dateOfBirth.value.split('-');
+        var year = parseInt(dov[0]) - parseInt(dob[0]);
+        var month = parseInt(dov[1]) - parseInt(dob[1]);
+        console.log(year);
+        console.log(month);
+        if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
+          month--;
+        }
+        if (month < 0) {
+          year--;
+          month += 12;
+        }
+        document.getElementById('age').placeholder = year + '歲' + month + '個月';
+      }
     }
     dateOfBirth.oninput = function() {
-      milliseconds = Date.parse(dateOfVisit.value) - Date.parse(dateOfBirth.value);
-      if (!isNaN(milliseconds))
-        document.getElementById('age').placeholder = Math.floor(milliseconds / (1000 * 60 * 60 * 24 * 365.25));
+      if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
+        var dov = dateOfVisit.value.split('-');
+        var dob = dateOfBirth.value.split('-');
+        var year = parseInt(dov[0]) - parseInt(dob[0]);
+        var month = parseInt(dov[1]) - parseInt(dob[1]);
+        console.log(year);
+        console.log(month);
+        if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
+          month--;
+        }
+        if (month < 0) {
+          year--;
+          month += 12;
+        }
+        document.getElementById('age').placeholder = year + '歲' + month + '個月';
+      }
     }
 
     var sliders = document.getElementsByClassName("form-range");
