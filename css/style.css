@@ -37,8 +37,10 @@ a {
     -webkit-box-shadow: none;
     box-shadow: none;
     border-color: #000; } */
-.form-control{margin-bottom: 10px;}
 .form-label{margin-bottom: 0px;}
+.form-control{margin-bottom: 20px;}
+.form-range{margin-bottom: 20px;}
+.form-select{margin-bottom: 20px;}
 
 .col-form-label {
   margin-left: -20px;
