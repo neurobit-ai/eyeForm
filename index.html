@@ -87,18 +87,18 @@
                   <div class="col-6 form-group">
                     <label class="form-label">性別</label>
                     <br>　
-                    <input type="radio" name="sex" id="sexM" value="男">
-                    <label for="sexM">男　</label>
-                    <input type="radio" name="sex" id="sexF" value="女">
-                    <label for="sexF">女　</label>
+                    <input type="radio" class="form-check-input" name="sex" id="sexM" value="男">
+                    <label class="form-label" for="sexM">男　</label>
+                    <input type="radio" class="form-check-input" name="sex" id="sexF" value="女">
+                    <label class="form-label" for="sexF">女　</label>
                   </div>
                   <div class="col-6 form-group">
                     <label class="form-label">胎別</label>
                     <br>　
-                    <input type="radio" name="birth" id="birth" value="單">
-                    <label for="birth">單　</label>
-                    <input type="radio" name="birth" id="births" value="多">
-                    <label for="births">多　</label>
+                    <input type="radio" class="form-check-input" name="birth" id="birth" value="單">
+                    <label class="form-label" for="birth">單　</label>
+                    <input type="radio" class="form-check-input" name="birth" id="births" value="多">
+                    <label class="form-label" for="births">多　</label>
                   </div>
                 </div>
 
@@ -514,7 +514,10 @@
                 <br>
                 <div class="row">
                   <div class="col-9 form-group">
-                    <label class="h5">治療方式</label>
+                    <input type="radio" class="form-check-input" name="treatment" id="treatmentN" value="N" checked>
+                    <label class="form-label h6" for="treatmentN">未治療或觀察　</label>
+                    <input type="radio" class="form-check-input" name="treatment" id="treatmentY" value="Y">
+                    <label class="form-label h6" for="treatmentY">治療處置　</label>
                   </div>
                   <div class="col-3 form-group">
                     <input type="submit" value="上傳" class="btn btn-outline-primary btn-rounded py-0 px-4">
@@ -524,16 +527,18 @@
                 <div class="row g-0">
                   <div class="col-4 form-group">
                     <label class="form-label" for="treatment1">眼鏡</label>
-                    <select class="form-select" name="treatment1" id="treatment1">
+                    <select class="form-select" name="treatment1" id="treatment1" disabled>
                       <option value=""></option>
                       <option value="一般眼鏡">一般眼鏡</option>
-                      <option value="近視控制眼鏡">近視控制眼鏡</option>
-                      <option value="近視控制隱形眼鏡">近視控制隱形眼鏡</option>
+                      <option value="近視控制眼鏡_Zeiss_MyoVision">近視控制眼鏡_Zeiss_MyoVision</option>
+                      <option value="近視控制眼鏡_Hoya_MiyoSmart">近視控制眼鏡_Hoya_MiyoSmart</option>
+                      <option value="近視控制眼鏡_依視路_星趣控">近視控制眼鏡_依視路_星趣控</option>
+                      <option value="近視控制隱形眼鏡_酷柏_MiSight">近視控制隱形眼鏡_酷柏_MiSight</option>
                     </select>
                   </div>
                   <div class="col-4 form-group">
                     <label class="form-label" for="treatment2">散瞳劑</label>
-                    <select class="form-select" name="treatment2" id="treatment2">
+                    <select class="form-select" name="treatment2" id="treatment2" disabled>
                       <option value=""></option>
                       <option value="短效">短效</option>
                       <option value="0.01%">0.01%</option>
@@ -548,7 +553,7 @@
                   </div>
                   <div class="col-4 form-group">
                     <label class="form-label" for="treatment3">角膜塑型片</label>
-                    <select class="form-select" name="treatment3" id="treatment3">
+                    <select class="form-select" name="treatment3" id="treatment3" disabled>
                       <option value=""></option>
                       <option value="角膜塑型片">角膜塑型片</option>
                     </select>
@@ -628,6 +633,19 @@
     var os5int = document.getElementById("os5int");
     os5int.onchange = function() {
       $('#os5dec').prop('disabled', (os5int.value >= 20 && os5int.value <= 30)?false:true);
+    }
+
+    var treatmentN = document.getElementById("treatmentN");
+    treatmentN.onchange = function() {
+      $('#treatment1').prop('disabled', (treatmentN.value == 'N')?true:false);
+      $('#treatment2').prop('disabled', (treatmentN.value == 'N')?true:false);
+      $('#treatment3').prop('disabled', (treatmentN.value == 'N')?true:false);
+    }
+    var treatmentY = document.getElementById("treatmentY");
+    treatmentY.onchange = function() {
+      $('#treatment1').prop('disabled', (treatmentY.value == 'Y')?false:true);
+      $('#treatment2').prop('disabled', (treatmentY.value == 'Y')?false:true);
+      $('#treatment3').prop('disabled', (treatmentY.value == 'Y')?false:true);
     }
   </script>
     
