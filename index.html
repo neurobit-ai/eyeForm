@@ -58,7 +58,7 @@
                 <div class="row">
                   <div class="col-3 form-group">
                     <label class="form-label" for="age">實歲</label>
-                    <input type="number" class="form-control" name="year" id="age" disabled>
+                    <input type="text" class="form-control" name="age" id="age" disabled>
                   </div>
                   <div class="col-3 form-group">
                     <label class="form-label" for="height">身高(cm)</label>
@@ -520,7 +520,7 @@
                     <label class="form-label h6" for="treatmentY">治療處置　</label>
                   </div>
                   <div class="col-3 form-group">
-                    <input type="submit" value="上傳" class="btn btn-outline-primary btn-rounded py-0 px-4">
+                    <input type="submit" id="submit" value="上傳" class="btn btn-outline-primary btn-rounded py-0 px-4">
                     <span class="submitting"></span>
                   </div>
                 </div>
@@ -647,7 +647,13 @@
       $('#treatment2').prop('disabled', (treatmentY.value == 'Y')?false:true);
       $('#treatment3').prop('disabled', (treatmentY.value == 'Y')?false:true);
     }
-  </script>
+
+    var submit = document.getElementById("submit");
+    submit.onclick = function() {
+      $('#age').prop('disabled', false);
+      $('#age').prop('value', $('#age').prop('placeholder'));
+    }
+</script>
     
 
     <script src="js/jquery-3.3.1.min.js"></script>
