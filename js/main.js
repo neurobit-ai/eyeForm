@@ -9,9 +9,10 @@ $(function() {
 		if ($('#contactForm').length > 0 ) {
 			$( "#contactForm" ).validate( {
 				rules: {
-					caseNo: "required",
 					medRecNo: "required",
+					site: "required",
 					dateOfVisit: "required",
+					dateOfBirth: "required",
 					// name: "required",
 					// email: {
 					// 	required: true,
