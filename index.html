@@ -584,6 +584,24 @@
   </div>
     
   <script>
+    var medRecNo = document.getElementById("medRecNo");
+    medRecNo.onclick = function() {
+      document.getElementById('site').value = '';
+      document.getElementById('caseNo').value = '';
+    }
+
+    var site = document.getElementById("site");
+    site.onchange = function() {
+      $.ajax({
+        url: `https://script.google.com/macros/s/AKfycbzaRtlu1pZ6LUpeUltKTDrB3CB1BrpbKHw8qy-7B2z5tKLQA7938bF6ntDwsEAg-XPg-g/exec?${medRecNo.value}`,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          document.getElementById('caseNo').value = data;
+        }
+      });
+    }
+
     var dateOfVisit = document.getElementById('dateOfVisit');
     var dateOfBirth = document.getElementById('dateOfBirth');
     dateOfVisit.oninput = function() {
@@ -601,7 +619,7 @@
           year--;
           month += 12;
         }
-        document.getElementById('age').placeholder = year + '歲' + month + '個月';
+        document.getElementById('age').value = year + '歲' + month + '個月';
       }
     }
     dateOfBirth.oninput = function() {
@@ -619,7 +637,7 @@
           year--;
           month += 12;
         }
-        document.getElementById('age').placeholder = year + '歲' + month + '個月';
+        document.getElementById('age').value = year + '歲' + month + '個月';
       }
     }
 
@@ -658,8 +676,8 @@
 
     var submit = document.getElementById("submit");
     submit.onclick = function() {
-      $('#age').prop('disabled', false);
-      $('#age').prop('value', $('#age').prop('placeholder'));
+      document.getElementById('age').disabled = false;
+      document.getElementById('caseNo').disabled = false;
     }
   </script>
     
