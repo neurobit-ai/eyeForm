@@ -36,7 +36,7 @@
                 <div class="row">
                   <div class="col-6 form-group">
                     <label class="form-label" for="medRecNo">病歷號</label>
-                    <input type="number" class="form-control" name="medRecNo" id="medRecNo">
+                    <input type="text" class="form-control" name="medRecNo" id="medRecNo">
                   </div>
                   <div class="col-3 form-group">
                     <label class="form-label" for="site">院所</label>
@@ -48,7 +48,7 @@
                   </div>
                   <div class="col-3 form-group">
                     <label class="form-label" for="caseNo">案號</label>
-                    <input type="number" min=1 class="form-control" name="caseNo" id="caseNo" disabled>
+                    <input type="number" class="form-control" name="caseNo" id="caseNo" disabled>
                   </div>
                 </div>
 
@@ -124,11 +124,15 @@
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <label class="form-label" for="od1">右眼最佳矯正視力 <span class="form-range-value" id="od1value"></span></label>
+                    <label class="form-label" for="od1">右眼最佳矯正視力<span class="form-range-value" id="od1value"></span></label>
+                    <label class="form-label" for="od0">戴眼鏡</label>
+                    <input type="checkbox" class="form-check-input" name="od0" id="od0" value="G">
                     <input type="range" class="form-range" min=0 max=1 step=0.1 name="od1" id="od1">
                   </div>
                   <div class="col-6 form-group">
-                    <label class="form-label" for="os1">左眼最佳矯正視力 <span class="form-range-value" id="os1value"></span></label>
+                    <label class="form-label" for="os1">左眼最佳矯正視力<span class="form-range-value" id="os1value"></span></label>
+                    <label class="form-label" for="os0">戴眼鏡</label>
+                    <input type="checkbox" class="form-check-input" name="os0" id="os0" value="G">
                     <input type="range" class="form-range" min=0 max=1 step=0.1 name="os1" id="os1">
                   </div>
                 </div>
@@ -593,11 +597,47 @@
     var site = document.getElementById("site");
     site.onchange = function() {
       $.ajax({
-        url: `https://script.google.com/macros/s/AKfycbxtfsXqFryZI0dSz2ADiJHuPkkl2cLc9nDj8eycP9ihOQ6abHn2fUasni0TXu-ogzy4YA/exec?${medRecNo.value}`,
+        url: `https://script.google.com/macros/s/AKfycbwr-fBTrxz1ZapFghTRcxedZQekgC5sRQajHBFYnry9tI7OLmnlK9dMgxvPMFTszLDGNg/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-          document.getElementById('caseNo').value = data;
+          if (typeof data === 'object') {
+            document.getElementById('caseNo').value = data[0][0];
+            document.getElementById('dateOfBirth').value = new Date(Date.parse(data[0][2])+8*60*60*1000).toISOString().split('T')[0];
+            document.getElementById('dateOfVisit').value = new Date(Date.parse(data[0][10])+8*60*60*1000).toISOString().split('T')[0];
+            document.getElementById('age').value = data[0][11];
+            document.getElementById('height').value = data[0][12];
+            document.getElementById('pretermW').value = data[0][6];
+            document.getElementById('pretermD').value = data[0][7];
+            if (data[0][3] == '男')
+              document.getElementById('sexM').checked = true;
+            if (data[0][3] == '女')
+              document.getElementById('sexF').checked = true;
+            if (data[0][4] == '單')
+              document.getElementById('birth').checked = true;
+            if (data[0][4] == '多')
+              document.getElementById('births').checked = true;
+            document.getElementById('fatherD').value = data[0][8];
+            document.getElementById('motherD').value = data[0][9];
+            if (data[0][13] == 'G')
+              document.getElementById('od0').checked = true;
+            document.getElementById('od1').value = data[0][14];
+            document.getElementById('od2').value = data[0][15];
+            document.getElementById('od3').value = data[0][16];
+            document.getElementById('od4').value = data[0][17];
+            document.getElementById('od5int').value = parseInt(data[0][18]);
+            document.getElementById('od5dec').value = (data[0][18] - parseInt(data[0][18])).toFixed(2).toString().substring(1);
+            if (data[0][19] == 'G')
+              document.getElementById('os0').checked = true;
+            document.getElementById('os1').value = data[0][20];
+            document.getElementById('os2').value = data[0][21];
+            document.getElementById('os3').value = data[0][22];
+            document.getElementById('os4').value = data[0][23];
+            document.getElementById('os5int').value = parseInt(data[0][24]);
+            document.getElementById('os5dec').value = (data[0][24] - parseInt(data[0][24])).toFixed(2).toString().substring(1);
+          }
+          else
+            document.getElementById('caseNo').value = data;
         }
       });
     }
