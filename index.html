@@ -18,8 +18,8 @@
     <title>eyeForm</title>
   </head>
   <body class="bg-light">
-    <input type="hidden" name="name" id="name" value="phil">
-    <input type="hidden" name="email" id="email" value="phil@1001000.io">
+    <input type="text" name="name" id="name">
+    <input type="text" name="email" id="email">
     <script src="js/jwt-decode.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
@@ -28,8 +28,8 @@
         var decoded = jwt_decode(token);
         console.log(decoded.name);
         console.log(decoded.email);
-        // document.getElementById('name').value = decoded.name;
-        // document.getElementById('email').value = decoded.email;
+        document.getElementById('name').value = decoded.name;
+        document.getElementById('email').value = decoded.email;
       }
       window.onload = function () {
         google.accounts.id.initialize({
