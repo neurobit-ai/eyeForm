@@ -621,6 +621,7 @@
 
     var site = document.getElementById("site");
     site.onchange = function() {
+      if (document.getElementById('email').value)
       $.ajax({
         url: `https://script.google.com/macros/s/AKfycbxQ9syZwsCKqV-VomQu41ttXrDAlbraWhkM1tUjoRM-_Xt-01Lh1jL4MssVDRmh2EX4hw/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
         type: 'GET',
