@@ -18,8 +18,8 @@
     <title>eyeForm</title>
   </head>
   <body class="bg-light">
-    <input type="text" name="name" id="name">
-    <input type="text" name="email" id="email">
+    <input type="text" name="gname" id="name">
+    <input type="text" name="gmail" id="email">
     <script src="js/jwt-decode.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
@@ -622,7 +622,7 @@
     var site = document.getElementById("site");
     site.onchange = function() {
       $.ajax({
-        url: `https://script.google.com/macros/s/AKfycbzFg-6-thmeOZLz1KEWPWil7P3K5GJVsqNBNAi63EvD95acJABMxpDkSYDhZRGuVO49RQ/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
+        url: `https://script.google.com/macros/s/AKfycbwuupgogGyGcMZd4LmiTfYiAgnJ2uqDZ1ecaW4HvXLW3n3qJ6jIUmFgQQSwPYW84Qt4rw/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
