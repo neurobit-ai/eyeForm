@@ -11,6 +11,7 @@ $(function() {
 				rules: {
 					medRecNo: "required",
 					site: "required",
+					caseNo: "required",
 					dateOfVisit: "required",
 					dateOfBirth: "required",
 					// name: "required",
