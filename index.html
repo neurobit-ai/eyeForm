@@ -18,7 +18,32 @@
     <title>eyeForm</title>
   </head>
   <body class="bg-light">
-  
+    <script src="js/jwt-decode.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      function handleCredentialResponse(response) {
+        var token = response.credential;
+        var decoded = jwt_decode(token);
+        console.log(decoded.name);
+        console.log(decoded.email);
+        document.getElementById('name').value = decoded.name;
+        document.getElementById('email').value = decoded.email;
+      }
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: "654169467066-m7pbsg18jglpe45uqvqtq8hopsph4i8k.apps.googleusercontent.com",
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("buttonDiv"),
+          { theme: "filled_blue", size: "large", shape: "pill" }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+      }
+    </script>
+    <div id="buttonDiv"></div>
+    <input type="hidden" name="name" id="name">
+    <input type="hidden" name="email" id="email">
 
   <div class="content">
     
@@ -597,7 +622,7 @@
     var site = document.getElementById("site");
     site.onchange = function() {
       $.ajax({
-        url: `https://script.google.com/macros/s/AKfycbwr-fBTrxz1ZapFghTRcxedZQekgC5sRQajHBFYnry9tI7OLmnlK9dMgxvPMFTszLDGNg/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
+        url: `https://script.google.com/macros/s/AKfycbzFg-6-thmeOZLz1KEWPWil7P3K5GJVsqNBNAi63EvD95acJABMxpDkSYDhZRGuVO49RQ/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
         type: 'GET',
         dataType: 'json',
         success: function(data) {

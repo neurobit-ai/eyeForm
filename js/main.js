@@ -36,7 +36,7 @@ $(function() {
 
 					$.ajax({   	
 				      type: "POST",
-				      url: "https://script.google.com/macros/s/AKfycbwr-fBTrxz1ZapFghTRcxedZQekgC5sRQajHBFYnry9tI7OLmnlK9dMgxvPMFTszLDGNg/exec",
+				      url: "https://script.google.com/macros/s/AKfycbzFg-6-thmeOZLz1KEWPWil7P3K5GJVsqNBNAi63EvD95acJABMxpDkSYDhZRGuVO49RQ/exec",
 				      data: $(form).serialize(),
 
 				      beforeSend: function() { 
