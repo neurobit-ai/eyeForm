@@ -48,8 +48,32 @@
           google.accounts.id.prompt(); // also display the One Tap dialog
         }
       </script>
-      <div id="buttonDiv"></div>
+      <div class="row">
+        <div class="col-6 form-group">
+          <div id="buttonDiv"></div>
+        </div>
+        <div class="col-3 form-group">
+        </div>
+        <div class="col-3 form-group form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="darkMode">
+          <label class="form-check-label" for="darkMode">深色模式</label>
+        </div>
+      </div>
       <br>
+      <script>
+        var darkMode = document.getElementById('darkMode');
+        darkMode.onclick = function() {
+          if (darkMode.checked) {
+            document.body.classList.remove('bg-light');
+            document.body.classList.add('bg-dark');
+            document.body.classList.add('text-light');
+          } else {
+            document.body.classList.remove('bg-dark');
+            document.body.classList.remove('text-light');
+            document.body.classList.add('bg-light');
+          }
+        };
+      </script>
 
       <!-- <div class="row justify-content-center"> -->
         <!-- <div class="col-12"> -->
@@ -110,13 +134,13 @@
                         <input type="number" min=0 step=1 class="form-control" name="pretermW" id="pretermW">
                       </div>
                       <div class="col-1 form-group">
-                        <label class="col-form-label" for="pretermW">週又</label>
+                        <label class="form-label" for="pretermW">週</label>
                       </div>
                       <div class="col-4 form-group">
                         <input type="number" min=0 step=1 max=6 class="form-control" name="pretermD" id="pretermD">
                       </div>
                       <div class="col-1 form-group">
-                        <label class="col-form-label" for="pretermD">天</label>
+                        <label class="form-label" for="pretermD">天</label>
                       </div>
                     </div>
                   </div>
@@ -558,15 +582,12 @@
                 <div class="row">
                   <div class="col-9 form-group">
                     <input type="radio" class="form-check-input" name="treatment" id="treatmentN" value="N" checked>
-                    <label class="form-label h6" for="treatmentN">未治療或觀察　</label>
+                    <label class="form-label" for="treatmentN">未治療或觀察　</label>
                     <input type="radio" class="form-check-input" name="treatment" id="treatmentY" value="Y">
-                    <label class="form-label h6" for="treatmentY">治療處置　</label>
-                  </div>
-                  <div class="col-3 form-group">
-                    <input type="submit" id="submit" value="上傳" class="btn btn-outline-primary btn-rounded py-0 px-4">
-                    <span class="submitting"></span>
+                    <label class="form-label" for="treatmentY">治療處置　</label>
                   </div>
                 </div>
+                <br>
                 <div class="row g-0">
                   <div class="col-4 form-group">
                     <label class="form-label" for="treatment1">眼鏡</label>
@@ -600,6 +621,14 @@
                       <option value=""></option>
                       <option value="角膜塑型片">角膜塑型片</option>
                     </select>
+                  </div>
+                </div>
+
+                <i class="fa-solid fa-4"></i>
+                <div class="row">
+                  <div class="col-3 form-group">
+                    <input type="submit" id="submit" value="上傳" class="btn btn-outline-primary btn-rounded py-0 px-4">
+                    <span class="submitting"></span>
                   </div>
                 </div>
 
