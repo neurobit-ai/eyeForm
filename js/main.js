@@ -4,10 +4,10 @@ $(function() {
 
 	// Form
 
-	var contactForm = function() {
+	var eyeForm = function() {
 
-		if ($('#contactForm').length > 0 ) {
-			$( "#contactForm" ).validate( {
+		if ($('#eyeForm').length > 0 ) {
+			$( "#eyeForm" ).validate( {
 				rules: {
 					medRecNo: "required",
 					site: "required",
@@ -46,7 +46,7 @@ $(function() {
 		               if (msg == '[object Object]') {
 		               	$('#form-message-warning').hide();
 				            setTimeout(function(){
-		               		$('#contactForm').fadeOut();
+		               		$('#eyeForm').fadeOut();
 		               	}, 100);
 				            setTimeout(function(){
 				               $('#form-message-success').fadeIn();   
@@ -69,6 +69,6 @@ $(function() {
 			} );
 		}
 	};
-	contactForm();
+	eyeForm();
 
 });
