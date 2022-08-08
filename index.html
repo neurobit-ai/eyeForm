@@ -20,72 +20,54 @@
     <title>eyeForm</title>
   </head>
   <body class="bg-light">
+    <script src="js/jwt-decode.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      function handleCredentialResponse(response) {
+        var token = response.credential;
+        var decoded = jwt_decode(token);
+        console.log(decoded.name);
+        console.log(decoded.email);
+        document.getElementById('name').value = decoded.name;
+        document.getElementById('email').value = decoded.email;
+      }
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: "654169467066-m7pbsg18jglpe45uqvqtq8hopsph4i8k.apps.googleusercontent.com",
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("buttonDiv"),
+          { theme: "filled_blue", size: "large" }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+      }
+    </script>
 
-  <div class="content">
-    
-    <div class="container">
-      <i class="fa-solid fa-1"></i>
-      <script src="js/jwt-decode.js"></script>
-      <script src="https://accounts.google.com/gsi/client" async defer></script>
-      <script>
-        function handleCredentialResponse(response) {
-          var token = response.credential;
-          var decoded = jwt_decode(token);
-          console.log(decoded.name);
-          console.log(decoded.email);
-          document.getElementById('name').value = decoded.name;
-          document.getElementById('email').value = decoded.email;
-        }
-        window.onload = function () {
-          google.accounts.id.initialize({
-            client_id: "654169467066-m7pbsg18jglpe45uqvqtq8hopsph4i8k.apps.googleusercontent.com",
-            callback: handleCredentialResponse
-          });
-          google.accounts.id.renderButton(
-            document.getElementById("buttonDiv"),
-            { theme: "filled_blue", size: "large" }  // customization attributes
-          );
-          google.accounts.id.prompt(); // also display the One Tap dialog
-        }
-      </script>
-      <div class="row">
-        <div class="col-6 form-group">
-          <div id="buttonDiv"></div>
-        </div>
-        <div class="col-3 form-group">
-        </div>
-        <div class="col-3 form-group form-check form-switch">
-          <input class="form-check-input" type="checkbox" id="darkMode">
-          <label class="form-check-label" for="darkMode">深色模式</label>
-        </div>
-      </div>
-      <br>
-      <script>
-        var darkMode = document.getElementById('darkMode');
-        darkMode.onclick = function() {
-          if (darkMode.checked) {
-            document.body.classList.remove('bg-light');
-            document.body.classList.add('bg-dark');
-            document.body.classList.add('text-light');
-          } else {
-            document.body.classList.remove('bg-dark');
-            document.body.classList.remove('text-light');
-            document.body.classList.add('bg-light');
-          }
-        };
-      </script>
-
-      <!-- <div class="row justify-content-center"> -->
-        <!-- <div class="col-12"> -->
-
-          <div class="row justify-content-center">
-            <div class="col-12">
+    <div class="content">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12">
               
               <!-- <h3 class="thin-heading mb-4">eyeForm</h3> -->
 
               <form method="post" id="eyeForm" name="eyeForm">
                 <input type="hidden" name="name" id="name">
                 <input type="hidden" name="email" id="email">
+
+                <i class="fa-solid fa-1"></i>
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <div id="buttonDiv"></div>
+                  </div>
+                  <div class="col-3 form-group">
+                  </div>
+                  <div class="col-3 form-group form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="darkMode">
+                    <label class="form-check-label" for="darkMode">深色模式</label>
+                  </div>
+                </div>
+                <br>
 
                 <i class="fa-solid fa-2"></i>
                 <div class="row">
@@ -639,15 +621,25 @@
                 上傳完畢！
               </div>
 
-            </div>
           </div>
-        <!-- </div> -->
-      <!-- </div> -->
+        </div>
+      </div>
     </div>
-
-  </div>
     
   <script>
+    var darkMode = document.getElementById('darkMode');
+    darkMode.onclick = function() {
+      if (darkMode.checked) {
+        document.body.classList.remove('bg-light');
+        document.body.classList.add('bg-dark');
+        document.body.classList.add('text-light');
+      } else {
+        document.body.classList.remove('bg-dark');
+        document.body.classList.remove('text-light');
+        document.body.classList.add('bg-light');
+      }
+    };
+
     var medRecNo = document.getElementById("medRecNo");
     medRecNo.onclick = function() {
       document.getElementById('site').value = '';
