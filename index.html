@@ -18,34 +18,36 @@
     <title>eyeForm</title>
   </head>
   <body class="bg-light">
-    <script src="js/jwt-decode.js"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script>
-      function handleCredentialResponse(response) {
-        var token = response.credential;
-        var decoded = jwt_decode(token);
-        console.log(decoded.name);
-        console.log(decoded.email);
-        document.getElementById('name').value = decoded.name;
-        document.getElementById('email').value = decoded.email;
-      }
-      window.onload = function () {
-        google.accounts.id.initialize({
-          client_id: "654169467066-m7pbsg18jglpe45uqvqtq8hopsph4i8k.apps.googleusercontent.com",
-          callback: handleCredentialResponse
-        });
-        google.accounts.id.renderButton(
-          document.getElementById("buttonDiv"),
-          { theme: "filled_blue", size: "large", shape: "pill" }  // customization attributes
-        );
-        google.accounts.id.prompt(); // also display the One Tap dialog
-      }
-    </script>
-    <div id="buttonDiv"></div>
 
   <div class="content">
     
     <div class="container">
+      <script src="js/jwt-decode.js"></script>
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
+      <script>
+        function handleCredentialResponse(response) {
+          var token = response.credential;
+          var decoded = jwt_decode(token);
+          console.log(decoded.name);
+          console.log(decoded.email);
+          document.getElementById('name').value = decoded.name;
+          document.getElementById('email').value = decoded.email;
+        }
+        window.onload = function () {
+          google.accounts.id.initialize({
+            client_id: "654169467066-m7pbsg18jglpe45uqvqtq8hopsph4i8k.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+          });
+          google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            { theme: "filled_blue", size: "large", shape: "pill" }  // customization attributes
+          );
+          google.accounts.id.prompt(); // also display the One Tap dialog
+        }
+      </script>
+      <div id="buttonDiv"></div>
+      <br>
+
       <!-- <div class="row justify-content-center"> -->
         <!-- <div class="col-12"> -->
 
