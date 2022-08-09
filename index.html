@@ -776,8 +776,12 @@
 
     var submit = document.getElementById("submit");
     submit.onclick = function() {
-      document.getElementById('age').disabled = false;
+      if (document.getElementById('caseNo').value == '') {
+        alert('請先按 Google 登入，再填病歷號、選取院所，就能取得案號。');
+        return;
+      }
       document.getElementById('caseNo').disabled = false;
+      document.getElementById('age').disabled = false;
     }
   </script>
     
