@@ -15,7 +15,12 @@
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <script src="https://use.fontawesome.com/releases/v6.1.2/js/all.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://use.fontawesome.com/releases/v6.1.2/js/all.js" crossorigin="anonymous"></script> -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
 
     <title>eyeForm</title>
   </head>
@@ -38,38 +43,53 @@
         });
         google.accounts.id.renderButton(
           document.getElementById("buttonDiv"),
-          { theme: "filled_blue", size: "large" }  // customization attributes
+          { theme: "filled_blue", size: "large", text: "continue_with", shape: "pill" }  // customization attributes
         );
         google.accounts.id.prompt(); // also display the One Tap dialog
       }
     </script>
+    <script type="text/javascript">
+      $(window).on('load', function() {
+          $('#staticBackdrop').modal('show');
+      });
+    </script>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">eyeForm學齡兒童近視追蹤</h5>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          </div>
+          <div class="modal-body" id="buttonDiv">
+            ...
+          </div>
+          <div class="modal-footer">
+            ©2022神經元科技
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="content">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-12">
-              
-              <!-- <h3 class="thin-heading mb-4">eyeForm</h3> -->
+
+              <div class="col">
+                <div class="float-end form-group form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="darkMode">
+                  <label class="form-check-label" for="darkMode">深色模式</label>
+                </div>
+              </div>
 
               <form method="post" id="eyeForm" name="eyeForm">
                 <input type="hidden" name="name" id="name">
                 <input type="hidden" name="email" id="email">
 
-                <i class="fa-solid fa-1"></i>
-                <div class="row">
-                  <div class="col-6 form-group">
-                    <div id="buttonDiv"></div>
-                  </div>
-                  <div class="col-3 form-group">
-                  </div>
-                  <div class="col-3 form-group form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="darkMode">
-                    <label class="form-check-label" for="darkMode">深色模式</label>
-                  </div>
-                </div>
-                <br>
+                <!-- <i class="fa-solid fa-1"></i> -->
 
-                <i class="fa-solid fa-2"></i>
+                <!-- <i class="fa-solid fa-2"></i> -->
                 <div class="row">
                   <div class="col-6 form-group">
                     <label class="form-label" for="medRecNo">病歷號</label>
@@ -560,7 +580,7 @@
                   </div>
                 </div>
 
-                <i class="fa-solid fa-3"></i>
+                <!-- <i class="fa-solid fa-3"></i> -->
                 <div class="row">
                   <div class="col-9 form-group">
                     <input type="radio" class="form-check-input" name="treatment" id="treatmentN" value="N" checked>
@@ -606,9 +626,12 @@
                   </div>
                 </div>
 
-                <i class="fa-solid fa-4"></i>
-                <div class="row">
-                  <div class="col-3 form-group">
+                <!-- <i class="fa-solid fa-4"></i> -->
+                <div class="col">
+                  <div class="float-end form-group">
+                    <button type="button" class="btn btn-outline-primary btn-rounded py-0 px-4" data-bs-toggle="modal" data-bs-target="#reportModal">
+                      危險度分析
+                    </button>
                     <input type="submit" id="submit" value="上傳" class="btn btn-outline-primary btn-rounded py-0 px-4">
                     <span class="submitting"></span>
                   </div>
@@ -622,7 +645,6 @@
                 上傳完畢！
               </div>
 
-          </div>
         </div>
       </div>
     </div>
@@ -784,13 +806,6 @@
       document.getElementById('age').disabled = false;
     }
   </script>
-    
-
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/main.js"></script>
 
   </body>
 </html>
