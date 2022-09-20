@@ -35,6 +35,7 @@
         console.log(decoded.email);
         document.getElementById('name').value = decoded.name;
         document.getElementById('email').value = decoded.email;
+        $('#staticBackdrop').modal('hide');
       }
       window.onload = function () {
         google.accounts.id.initialize({
@@ -43,9 +44,9 @@
         });
         google.accounts.id.renderButton(
           document.getElementById("buttonDiv"),
-          { theme: "filled_blue", size: "large", text: "continue_with", shape: "pill" }  // customization attributes
+          { theme: "filled_blue", size: "large", text: "continue_with" }  // customization attributes
         );
-        google.accounts.id.prompt(); // also display the One Tap dialog
+        // google.accounts.id.prompt(); // also display the One Tap dialog
       }
     </script>
     <script type="text/javascript">
