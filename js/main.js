@@ -11,7 +11,7 @@ $(function() {
 				rules: {
 					medRecNo: "required",
 					site: "required",
-					// caseNo: "required",
+					caseNo: "required",
 					dateOfVisit: "required",
 					dateOfBirth: "required",
 					// name: "required",
@@ -34,6 +34,8 @@ $(function() {
 					var $submit = $('.submitting'),
 						waitText = '上 傳 中 . . .';
 
+					$('#caseNo').prop('disabled', false);
+					$('#age').prop('disabled', false);
 					$.ajax({   	
 				      type: "POST",
 				      url: "https://script.google.com/macros/s/AKfycbxQ9syZwsCKqV-VomQu41ttXrDAlbraWhkM1tUjoRM-_Xt-01Lh1jL4MssVDRmh2EX4hw/exec",

@@ -15,7 +15,6 @@
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- <script src="https://use.fontawesome.com/releases/v6.1.2/js/all.js" crossorigin="anonymous"></script> -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -88,9 +87,6 @@
                 <input type="hidden" name="name" id="name">
                 <input type="hidden" name="email" id="email">
 
-                <!-- <i class="fa-solid fa-1"></i> -->
-
-                <!-- <i class="fa-solid fa-2"></i> -->
                 <div class="row">
                   <div class="col-6 form-group">
                     <label class="form-label" for="medRecNo">病歷號</label>
@@ -151,16 +147,14 @@
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <label class="form-label">性別</label>
-                    <br>　
+                    <label class="form-label">性別　</label>
                     <input type="radio" class="form-check-input" name="sex" id="sexM" value="男">
                     <label class="form-label" for="sexM">男　</label>
                     <input type="radio" class="form-check-input" name="sex" id="sexF" value="女">
                     <label class="form-label" for="sexF">女　</label>
                   </div>
                   <div class="col-6 form-group">
-                    <label class="form-label">胎別</label>
-                    <br>　
+                    <label class="form-label">胎別　</label>
                     <input type="radio" class="form-check-input" name="birth" id="birth" value="單">
                     <label class="form-label" for="birth">單　</label>
                     <input type="radio" class="form-check-input" name="birth" id="births" value="多">
@@ -168,7 +162,6 @@
                   </div>
                 </div>
 
-                <br>
                 <div class="row">
                   <div class="col-6 form-group">
                     <label class="form-label" for="fatherD">父：近視度數 ≦ -5D</label>
@@ -179,6 +172,8 @@
                     <input type="number" max=-5 step=0.5 class="form-control" name="motherD" id="motherD">
                   </div>
                 </div>
+
+                <br><hr><br>
 
                 <div class="row">
                   <div class="col-6 form-group">
@@ -581,7 +576,8 @@
                   </div>
                 </div>
 
-                <!-- <i class="fa-solid fa-3"></i> -->
+                <br><hr><br>
+
                 <div class="row">
                   <div class="col-9 form-group">
                     <input type="radio" class="form-check-input" name="treatment" id="treatmentN" value="N" checked>
@@ -627,7 +623,8 @@
                   </div>
                 </div>
 
-                <!-- <i class="fa-solid fa-4"></i> -->
+                <br><hr><br>
+
                 <div class="col">
                   <div class="float-end form-group">
                     <button type="button" class="btn btn-outline-primary btn-rounded py-0 px-4" data-bs-toggle="modal" data-bs-target="#reportModal">
@@ -795,16 +792,6 @@
       $('#treatment1').prop('disabled', (treatmentY.value == 'Y')?false:true);
       $('#treatment2').prop('disabled', (treatmentY.value == 'Y')?false:true);
       $('#treatment3').prop('disabled', (treatmentY.value == 'Y')?false:true);
-    }
-
-    var submit = document.getElementById("submit");
-    submit.onclick = function() {
-      if (document.getElementById('caseNo').value == '') {
-        alert('請先按 Google 登入，再填病歷號、選取院所，就能取得案號。');
-        return;
-      }
-      document.getElementById('caseNo').disabled = false;
-      document.getElementById('age').disabled = false;
     }
   </script>
 

@@ -38,9 +38,7 @@ a {
     box-shadow: none;
     border-color: #000; } */
 .form-label{margin-bottom: 0px;}
-.form-control{margin-bottom: 20px;}
-.form-range{margin-bottom: 20px;}
-.form-select{margin-bottom: 20px;}
+.row{margin-bottom: 20px;}
 
 .col-form-label {
   margin-left: -20px;
