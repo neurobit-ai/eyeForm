@@ -1,28 +1,22 @@
 <!doctype html>
 <html lang="zh-Hant-TW">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>eyeForm - Neurobit AI</title>
+
     <!-- <link href="https://fonts.googleapis.com/css?family=Oswald:300,400|Roboto+Mono&display=swap" rel="stylesheet"> -->
-
     <!-- <link rel="stylesheet" href="fonts/icomoon/style.css"> -->
-
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.513.min.css">
-    
-    <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
-
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/main.js"></script>
-
-    <title>eyeForm - Neurobit AI</title>
   </head>
+
   <body class="bg-light">
     <script src="js/jwt-decode.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
@@ -226,7 +220,7 @@
                         <option value="20">20</option>
                         <option value="160">160</option>
                       </optgroup>
-                      <optgroup label="------------------------------------------------">
+                      <optgroup label="--------------------">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -278,7 +272,7 @@
                         <option value="20">20</option>
                         <option value="160">160</option>
                       </optgroup>
-                      <optgroup label="------------------------------------------------">
+                      <optgroup label="--------------------">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -627,7 +621,7 @@
 
                 <div class="col">
                   <div class="float-end form-group">
-                    <button type="button" class="btn btn-outline-primary btn-rounded py-0 px-4" data-bs-toggle="modal" data-bs-target="#reportModal">
+                    <button type="button" id="report" class="btn btn-outline-primary btn-rounded py-0 px-4">
                       危險度分析
                     </button>
                     <input type="submit" id="submit" value="上傳" class="btn btn-outline-primary btn-rounded py-0 px-4">
@@ -728,8 +722,8 @@
       if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
         var dov = dateOfVisit.value.split('-');
         var dob = dateOfBirth.value.split('-');
-        var year = parseInt(dov[0]) - parseInt(dob[0]);
-        var month = parseInt(dov[1]) - parseInt(dob[1]);
+        year = parseInt(dov[0]) - parseInt(dob[0]);
+        month = parseInt(dov[1]) - parseInt(dob[1]);
         console.log(year);
         console.log(month);
         if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
@@ -746,8 +740,8 @@
       if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
         var dov = dateOfVisit.value.split('-');
         var dob = dateOfBirth.value.split('-');
-        var year = parseInt(dov[0]) - parseInt(dob[0]);
-        var month = parseInt(dov[1]) - parseInt(dob[1]);
+        year = parseInt(dov[0]) - parseInt(dob[0]);
+        month = parseInt(dov[1]) - parseInt(dob[1]);
         console.log(year);
         console.log(month);
         if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
@@ -793,7 +787,16 @@
       $('#treatment2').prop('disabled', (treatmentY.value == 'Y')?false:true);
       $('#treatment3').prop('disabled', (treatmentY.value == 'Y')?false:true);
     }
-  </script>
 
+    var report = document.getElementById("report");
+    report.onclick = function() {
+      localStorage.clear();
+      localStorage.setItem('sex', document.querySelector('input[name="sex"]:checked').value);
+      localStorage.setItem('age', year + month / 12);
+      localStorage.setItem('od5', (od5int.value >= 20 && od5int.value <= 30)?od5int.value+od5dec.value:0);
+      localStorage.setItem('os5', (os5int.value >= 20 && os5int.value <= 30)?os5int.value+os5dec.value:0);
+      window.open('report.html');
+    }
+  </script>
   </body>
 </html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>eyeForm Report - Neurobit AI</title>
+
+    <link rel="stylesheet" href="css/bootstrap.513.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <py-env>
+        - matplotlib
+        - paths:
+          - ./data_to_plot.pkl
+    </py-env>
+  </head>
+  <body class="bg-light">
+    <script>
+      var sex = localStorage.getItem('sex');
+      var x = parseFloat(localStorage.getItem('age'));
+      var y1 = parseFloat(localStorage.getItem('od5'));
+      var y2 = parseFloat(localStorage.getItem('os5'));
+    </script>
+    <div id="plot"></div>
+    <py-script output="plot" src="plot.py">
+    </py-script>
+  </body>
+</html>
