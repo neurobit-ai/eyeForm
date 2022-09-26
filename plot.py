@@ -1,5 +1,7 @@
 from js import sex, x, y1, y2
 
+import pandas as pd
+
 import pickle
 with open('data_to_plot.pkl', 'rb') as f:
     data_to_plot = pickle.load(f)
