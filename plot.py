@@ -1,4 +1,4 @@
-from js import sex, x, y1, y2
+from js import sex, age, y1, y2
 
 import pandas as pd
 
@@ -26,6 +26,10 @@ analysis[0]['advice'] = '軸長在年齡正常範圍內，屬無/少風險，建
 analysis[1]['advice'] = '軸長稍長於年齡正常範圍，屬低風險，建議一年定期檢查，需改變生活型態及減少外在環境影響。'
 analysis[2]['advice'] = '軸長長於年齡正常範圍，屬中風險，建議半年回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、戶外活動需要配戴太陽眼鏡防藍光、UV），並搭配葉黃素或魚油服用。'
 analysis[3]['advice'] = '軸長甚長於年齡正常範圍，屬高風險，有極高近視惡化發展可能，建議3個月回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、避免坐姿不正，戶外活動需要配戴太陽眼鏡防藍光、UV），搭配葉黃素或魚油服用，並搭配積極治療控制。'
+
+import re
+m = re.match('(\d+)歲(\d+)', age)
+x = int(m.group(1)) + int(m.group(2)) / 12
 
 p0, p50, p75, p90, p100 = data_to_plot.loc[sex].loc[int(round(x))]
 y = max(y1, y2)

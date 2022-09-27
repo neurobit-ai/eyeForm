@@ -722,8 +722,8 @@
       if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
         var dov = dateOfVisit.value.split('-');
         var dob = dateOfBirth.value.split('-');
-        year = parseInt(dov[0]) - parseInt(dob[0]);
-        month = parseInt(dov[1]) - parseInt(dob[1]);
+        var year = parseInt(dov[0]) - parseInt(dob[0]);
+        var month = parseInt(dov[1]) - parseInt(dob[1]);
         console.log(year);
         console.log(month);
         if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
@@ -740,8 +740,8 @@
       if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
         var dov = dateOfVisit.value.split('-');
         var dob = dateOfBirth.value.split('-');
-        year = parseInt(dov[0]) - parseInt(dob[0]);
-        month = parseInt(dov[1]) - parseInt(dob[1]);
+        var year = parseInt(dov[0]) - parseInt(dob[0]);
+        var month = parseInt(dov[1]) - parseInt(dob[1]);
         console.log(year);
         console.log(month);
         if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
@@ -793,9 +793,7 @@
       localStorage.clear();
       localStorage.setItem('medRecNo', medRecNo.value);
       localStorage.setItem('site', site.value);
-      localStorage.setItem('year', year);
-      localStorage.setItem('month', month);
-      localStorage.setItem('age', year + month / 12);
+      localStorage.setItem('age', document.getElementById('age').value);
       localStorage.setItem('sex', document.querySelector('input[name="sex"]:checked').value);
       localStorage.setItem('od1', document.getElementById('od1').value);
       localStorage.setItem('os1', document.getElementById('os1').value);
