@@ -63,28 +63,26 @@
       </tbody>
       <tbody class="table-group-divider">
         <tr>
-          <th scope="row"></th>
-          <td><span id="year"></span>歲<span id="month"></span>個月</td>
-          <td><span id="sex"></span>生</td>
+          <td colspan="3" align="center"><span id="year"></span>歲<span id="month"></span>個月，<span id="sex"></span>生</td>
         </tr>
         <tr>
-          <td colspan="3"><div id="plot"></div></td>
+          <td colspan="3" align="center"><div id="plot"></div></td>
         </tr>
       </tbody>
     </table>
     <script>
       document.getElementById('site').innerHTML = localStorage.getItem('site');
       document.getElementById('medRecNo').innerHTML = localStorage.getItem('medRecNo');
-      document.getElementById('od1').innerHTML = parseFloat(localStorage.getItem('od1'));
-      document.getElementById('os1').innerHTML = parseFloat(localStorage.getItem('os1'));
-      document.getElementById('od2').innerHTML = parseFloat(localStorage.getItem('od2'));
-      document.getElementById('os2').innerHTML = parseFloat(localStorage.getItem('os2'));
-      document.getElementById('od3').innerHTML = parseFloat(localStorage.getItem('od3'));
-      document.getElementById('os3').innerHTML = parseFloat(localStorage.getItem('os3'));
+      document.getElementById('od1').innerHTML = parseFloat(localStorage.getItem('od1')).toFixed(1);
+      document.getElementById('os1').innerHTML = parseFloat(localStorage.getItem('os1')).toFixed(1);
+      document.getElementById('od2').innerHTML = parseFloat(localStorage.getItem('od2')).toFixed(2);
+      document.getElementById('os2').innerHTML = parseFloat(localStorage.getItem('os2')).toFixed(2);
+      document.getElementById('od3').innerHTML = parseFloat(localStorage.getItem('od3')).toFixed(2);
+      document.getElementById('os3').innerHTML = parseFloat(localStorage.getItem('os3')).toFixed(2);
       document.getElementById('od4').innerHTML = parseFloat(localStorage.getItem('od4'));
       document.getElementById('os4').innerHTML = parseFloat(localStorage.getItem('os4'));
-      document.getElementById('od5').innerHTML = parseFloat(localStorage.getItem('od5'));
-      document.getElementById('os5').innerHTML = parseFloat(localStorage.getItem('os5'));
+      document.getElementById('od5').innerHTML = parseFloat(localStorage.getItem('od5')).toFixed(2);
+      document.getElementById('os5').innerHTML = parseFloat(localStorage.getItem('os5')).toFixed(2);
       document.getElementById('year').innerHTML = localStorage.getItem('year');
       document.getElementById('month').innerHTML = localStorage.getItem('month');
       document.getElementById('sex').innerHTML = localStorage.getItem('sex');
