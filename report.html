@@ -22,16 +22,76 @@
         - paths:
           - ./data_to_plot.pkl
     </py-env>
+    <py-script output="plot" src="plot.py">
+    </py-script>
   </head>
-  <body class="bg-light">
+  <body class="p-3 m-0 border-0 bd-example">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><span id="site"></span> <span id="medRecNo"></span></th>
+          <th scope="col">右眼</th>
+          <th scope="col">左眼</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr>
+          <th scope="row">最佳矯正視力</th>
+          <td><span id="od1"></span></td>
+          <td><span id="os1"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">球面度數</th>
+          <td><span id="od2"></span></td>
+          <td><span id="os2"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">散光度數</th>
+          <td><span id="od3"></span></td>
+          <td><span id="os3"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">軸度</th>
+          <td><span id="od4"></span></td>
+          <td><span id="os4"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">軸長(mm)</th>
+          <td><span id="od5"></span></td>
+          <td><span id="os5"></span></td>
+        </tr>
+      </tbody>
+      <tbody class="table-group-divider">
+        <tr>
+          <th scope="row"></th>
+          <td><span id="year"></span>歲<span id="month"></span>個月</td>
+          <td><span id="sex"></span>生</td>
+        </tr>
+        <tr>
+          <td colspan="3"><div id="plot"></div></td>
+        </tr>
+      </tbody>
+    </table>
     <script>
+      document.getElementById('site').innerHTML = localStorage.getItem('site');
+      document.getElementById('medRecNo').innerHTML = localStorage.getItem('medRecNo');
+      document.getElementById('od1').innerHTML = parseFloat(localStorage.getItem('od1'));
+      document.getElementById('os1').innerHTML = parseFloat(localStorage.getItem('os1'));
+      document.getElementById('od2').innerHTML = parseFloat(localStorage.getItem('od2'));
+      document.getElementById('os2').innerHTML = parseFloat(localStorage.getItem('os2'));
+      document.getElementById('od3').innerHTML = parseFloat(localStorage.getItem('od3'));
+      document.getElementById('os3').innerHTML = parseFloat(localStorage.getItem('os3'));
+      document.getElementById('od4').innerHTML = parseFloat(localStorage.getItem('od4'));
+      document.getElementById('os4').innerHTML = parseFloat(localStorage.getItem('os4'));
+      document.getElementById('od5').innerHTML = parseFloat(localStorage.getItem('od5'));
+      document.getElementById('os5').innerHTML = parseFloat(localStorage.getItem('os5'));
+      document.getElementById('year').innerHTML = localStorage.getItem('year');
+      document.getElementById('month').innerHTML = localStorage.getItem('month');
+      document.getElementById('sex').innerHTML = localStorage.getItem('sex');
       var sex = localStorage.getItem('sex');
       var x = parseFloat(localStorage.getItem('age'));
       var y1 = parseFloat(localStorage.getItem('od5'));
       var y2 = parseFloat(localStorage.getItem('os5'));
     </script>
-    <div id="plot"></div>
-    <py-script output="plot" src="plot.py">
-    </py-script>
   </body>
 </html>

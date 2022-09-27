@@ -791,8 +791,20 @@
     var report = document.getElementById("report");
     report.onclick = function() {
       localStorage.clear();
-      localStorage.setItem('sex', document.querySelector('input[name="sex"]:checked').value);
+      localStorage.setItem('medRecNo', medRecNo.value);
+      localStorage.setItem('site', site.value);
+      localStorage.setItem('year', year);
+      localStorage.setItem('month', month);
       localStorage.setItem('age', year + month / 12);
+      localStorage.setItem('sex', document.querySelector('input[name="sex"]:checked').value);
+      localStorage.setItem('od1', document.getElementById('od1').value);
+      localStorage.setItem('os1', document.getElementById('os1').value);
+      localStorage.setItem('od2', document.getElementById('od2').value);
+      localStorage.setItem('os2', document.getElementById('os2').value);
+      localStorage.setItem('od3', document.getElementById('od3').value);
+      localStorage.setItem('os3', document.getElementById('os3').value);
+      localStorage.setItem('od4', document.getElementById('od4').value);
+      localStorage.setItem('os4', document.getElementById('os4').value);
       localStorage.setItem('od5', (od5int.value >= 20 && od5int.value <= 30)?od5int.value+od5dec.value:0);
       localStorage.setItem('os5', (os5int.value >= 20 && os5int.value <= 30)?os5int.value+os5dec.value:0);
       window.open('report.html');
