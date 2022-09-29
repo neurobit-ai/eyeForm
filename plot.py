@@ -31,16 +31,19 @@ import re
 m = re.match('(\d+)歲(\d+)', age)
 x = int(m.group(1)) + int(m.group(2)) / 12
 
-p0, p50, p75, p90, p100 = data_to_plot.loc[sex].loc[int(round(x))]
-y = max(y1, y2)
-if y < p50:
-    print(risk[0])
-elif y < p75:
-    print(risk[1])
-elif y < p90:
-    print(risk[2])
+if round(x) in range(3, 17):
+    p0, p50, p75, p90, p100 = data_to_plot.loc[sex].loc[round(x)]
+    y = max(y1, y2)
+    if y < p50:
+        print(risk[0])
+    elif y < p75:
+        print(risk[1])
+    elif y < p90:
+        print(risk[2])
+    else:
+        print(risk[3])
 else:
-    print(risk[3])
+    print('該年齡收案不足，無法提供具有統計意義之危險度分級。')
 
 plot(sex)
 if y1:
