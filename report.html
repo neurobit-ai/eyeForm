@@ -63,6 +63,16 @@
       </tbody>
       <tbody class="table-group-divider">
         <tr>
+          <th scope="row">處置建議：<span id="treatment"></span></th>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">危險度分析</th>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
           <td colspan="3" align="center"><span id="age"></span> / <span id="sex"></span>生</td>
         </tr>
         <tr>
@@ -94,6 +104,16 @@
       var age = localStorage.getItem('age');
       var y1 = parseFloat(localStorage.getItem('od5'));
       var y2 = parseFloat(localStorage.getItem('os5'));
+      var vision = Math.min(parseFloat(localStorage.getItem('od1')), parseFloat(localStorage.getItem('os1')));
+      if (vision > 0.9) {
+        document.getElementById('treatment').innerHTML = '無需處置';
+      } else if (vision > 0.7) {
+        document.getElementById('treatment').innerHTML = '點散瞳劑';
+      } else if (vision > 0.5) {
+        document.getElementById('treatment').innerHTML = '點散瞳劑、配戴一般眼鏡';
+      } else {
+        document.getElementById('treatment').innerHTML = '配戴一般眼鏡';
+      }
     </script>
   </body>
 </html>
