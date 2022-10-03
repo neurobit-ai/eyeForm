@@ -708,12 +708,12 @@
             document.getElementById('os4').value = data[0][23];
             document.getElementById('os5int').value = parseInt(data[0][24]);
             document.getElementById('os5dec').value = (data[0][24] - parseInt(data[0][24])).toFixed(2).toString().substring(1);
-            outputs['od1value'].innerHTML = data[0][14].toFixed(1);
-            outputs['od2value'].innerHTML = data[0][15].toFixed(2);
-            outputs['od3value'].innerHTML = data[0][16].toFixed(2);
-            outputs['os1value'].innerHTML = data[0][20].toFixed(1);
-            outputs['os2value'].innerHTML = data[0][21].toFixed(2);
-            outputs['os3value'].innerHTML = data[0][22].toFixed(2);
+            outputs['od1value'].innerHTML = (data[0][14] == '')?'❓':data[0][14].toFixed(1);
+            outputs['od2value'].innerHTML = (data[0][15] == '')?'❓':data[0][15].toFixed(2);
+            outputs['od3value'].innerHTML = (data[0][16] == '')?'❓':data[0][16].toFixed(2);
+            outputs['os1value'].innerHTML = (data[0][20] == '')?'❓':data[0][20].toFixed(1);
+            outputs['os2value'].innerHTML = (data[0][21] == '')?'❓':data[0][21].toFixed(2);
+            outputs['os3value'].innerHTML = (data[0][22] == '')?'❓':data[0][22].toFixed(2);
           }
           else
             document.getElementById('caseNo').value = data;
