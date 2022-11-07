@@ -730,8 +730,8 @@
       if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
         var dov = dateOfVisit.value.split('-');
         var dob = dateOfBirth.value.split('-');
-        var year = parseInt(dov[0]) - parseInt(dob[0]);
-        var month = parseInt(dov[1]) - parseInt(dob[1]);
+        year = parseInt(dov[0]) - parseInt(dob[0]);
+        month = parseInt(dov[1]) - parseInt(dob[1]);
         console.log(year);
         console.log(month);
         if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
@@ -748,8 +748,8 @@
       if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
         var dov = dateOfVisit.value.split('-');
         var dob = dateOfBirth.value.split('-');
-        var year = parseInt(dov[0]) - parseInt(dob[0]);
-        var month = parseInt(dov[1]) - parseInt(dob[1]);
+        year = parseInt(dov[0]) - parseInt(dob[0]);
+        month = parseInt(dov[1]) - parseInt(dob[1]);
         console.log(year);
         console.log(month);
         if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
@@ -794,6 +794,32 @@
       $('#treatment1').prop('disabled', false);
       $('#treatment2').prop('disabled', false);
       $('#treatment3').prop('disabled', false);
+    }
+
+    var suggestion = document.getElementById("suggestion");
+    suggestion.onclick = function() {
+      features = [];
+      if (document.getElementById('sexM').checked) features.push(1);
+      if (document.getElementById('sexF').checked) features.push(0);
+      if (document.getElementById('age').value) features.push(year + month/12);
+      features.push(parseFloat(document.getElementById('od1').value));
+      features.push(parseFloat(document.getElementById('od2').value));
+      features.push(parseFloat(document.getElementById('od3').value));
+      features.push(parseFloat(document.getElementById('od4').value));
+      features.push(parseFloat(document.getElementById('os1').value));
+      features.push(parseFloat(document.getElementById('os2').value));
+      features.push(parseFloat(document.getElementById('os3').value));
+      features.push(parseFloat(document.getElementById('os4').value));
+      if (features.length == 10)
+      $.ajax({
+        url: 'https://jfc9ltqvbg.execute-api.ap-northeast-1.amazonaws.com/sm',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(features),
+        success: function(data) {
+          console.log(data);
+        }
+      });
     }
 
     var report = document.getElementById("report");
