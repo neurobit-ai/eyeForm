@@ -805,10 +805,12 @@
       features.push(parseFloat(document.getElementById('od1').value));
       features.push(parseFloat(document.getElementById('od2').value));
       features.push(parseFloat(document.getElementById('od3').value));
+      if (document.getElementById('od4').value)
       features.push(parseFloat(document.getElementById('od4').value));
       features.push(parseFloat(document.getElementById('os1').value));
       features.push(parseFloat(document.getElementById('os2').value));
       features.push(parseFloat(document.getElementById('os3').value));
+      if (document.getElementById('os4').value)
       features.push(parseFloat(document.getElementById('os4').value));
       if (features.length == 10)
       $.ajax({
@@ -816,8 +818,8 @@
         type: 'POST',
         dataType: 'json',
         data: JSON.stringify(features),
-        success: function(data) {
-          console.log(data);
+        complete: function(data) {
+          console.log(data['responseText']);
         }
       });
     }
