@@ -34,6 +34,15 @@
         document.getElementById('name').value = decoded.name;
         document.getElementById('email').value = decoded.email;
         $('#staticBackdrop').modal('hide');
+        $.ajax({
+          url: 'https://jfc9ltqvbg.execute-api.ap-northeast-1.amazonaws.com/sm',
+          type: 'POST',
+          dataType: 'json',
+          data: JSON.stringify([1,2,3,4,5,6,7,8,9,10]),
+          complete: function(data) {
+            console.log(data['responseText']);
+          }
+        });
       }
       window.onload = function () {
         google.accounts.id.initialize({
