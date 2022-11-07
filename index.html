@@ -829,6 +829,18 @@
         data: JSON.stringify(features),
         complete: function(data) {
           console.log(data['responseText']);
+          if (data['responseText'] == '一般眼鏡')
+            document.getElementById('treatment1').value = '一般眼鏡';
+          if (data['responseText'] == '散瞳劑')
+            document.getElementById('treatment2').value = '0.1%';
+          if (data['responseText'] == '一般眼鏡散瞳劑') {
+            document.getElementById('treatment1').value = '一般眼鏡';
+            document.getElementById('treatment2').value = '0.1%';}
+          if (data['responseText'] == '角膜塑型片')
+            document.getElementById('treatment3').value = '角膜塑型片';
+          if (data['responseText'] == '散瞳劑角膜塑型片') {
+            document.getElementById('treatment2').value = '0.1%';
+            document.getElementById('treatment3').value = '角膜塑型片';}
         }
       });
     }
