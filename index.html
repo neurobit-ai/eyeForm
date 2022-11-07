@@ -781,16 +781,16 @@
     }
 
     var treatmentN = document.getElementById("treatmentN");
-    treatmentN.onchange = function() {
-      $('#treatment1').prop('disabled', (treatmentN.value == 'N')?true:false);
-      $('#treatment2').prop('disabled', (treatmentN.value == 'N')?true:false);
-      $('#treatment3').prop('disabled', (treatmentN.value == 'N')?true:false);
+    treatmentN.onclick = function() {
+      $('#treatment1').prop('disabled', true);
+      $('#treatment2').prop('disabled', true);
+      $('#treatment3').prop('disabled', true);
     }
     var treatmentY = document.getElementById("treatmentY");
-    treatmentY.onchange = function() {
-      $('#treatment1').prop('disabled', (treatmentY.value == 'Y')?false:true);
-      $('#treatment2').prop('disabled', (treatmentY.value == 'Y')?false:true);
-      $('#treatment3').prop('disabled', (treatmentY.value == 'Y')?false:true);
+    treatmentY.onclick = function() {
+      $('#treatment1').prop('disabled', false);
+      $('#treatment2').prop('disabled', false);
+      $('#treatment3').prop('disabled', false);
     }
 
     var report = document.getElementById("report");
