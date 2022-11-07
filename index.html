@@ -834,6 +834,10 @@
         data: JSON.stringify(features),
         complete: function(data) {
           console.log(data['responseText']);
+          $('#treatmentY').prop('checked', true);
+          $('#treatment1').prop('disabled', false);
+          $('#treatment2').prop('disabled', false);
+          $('#treatment3').prop('disabled', false);
           if (data['responseText'] == '不處置') treatments('', '', '');
           if (data['responseText'] == '一般眼鏡') treatments('一般眼鏡', '', '');
           if (data['responseText'] == '散瞳劑') treatments('', '0.1%', '');
