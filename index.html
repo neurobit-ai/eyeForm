@@ -865,6 +865,8 @@
       localStorage.setItem('os4', document.getElementById('os4').value);
       localStorage.setItem('od5', (od5int.value >= 20 && od5int.value <= 30)?od5int.value+od5dec.value:0);
       localStorage.setItem('os5', (os5int.value >= 20 && os5int.value <= 30)?os5int.value+os5dec.value:0);
+      localStorage.setItem('Y', year);
+      localStorage.setItem('M', month);
       window.open('report.html');
     }
   </script>

@@ -63,7 +63,7 @@
       </tbody>
       <tbody class="table-group-divider">
         <tr>
-          <th scope="row">處置建議：<span id="treatment"></span></th>
+          <th scope="row">處置建議：<span id="suggestion"></span></th>
           <td></td>
           <td></td>
         </tr>
@@ -88,32 +88,53 @@
     <script>
       document.getElementById('site').innerHTML = localStorage.getItem('site');
       document.getElementById('medRecNo').innerHTML = localStorage.getItem('medRecNo');
-      document.getElementById('od1').innerHTML = parseFloat(localStorage.getItem('od1')).toFixed(1);
-      document.getElementById('os1').innerHTML = parseFloat(localStorage.getItem('os1')).toFixed(1);
-      document.getElementById('od2').innerHTML = parseFloat(localStorage.getItem('od2')).toFixed(2);
-      document.getElementById('os2').innerHTML = parseFloat(localStorage.getItem('os2')).toFixed(2);
-      document.getElementById('od3').innerHTML = parseFloat(localStorage.getItem('od3')).toFixed(2);
-      document.getElementById('os3').innerHTML = parseFloat(localStorage.getItem('os3')).toFixed(2);
-      document.getElementById('od4').innerHTML = parseFloat(localStorage.getItem('od4'));
-      document.getElementById('os4').innerHTML = parseFloat(localStorage.getItem('os4'));
-      document.getElementById('od5').innerHTML = parseFloat(localStorage.getItem('od5')).toFixed(2);
-      document.getElementById('os5').innerHTML = parseFloat(localStorage.getItem('os5')).toFixed(2);
-      document.getElementById('age').innerHTML = localStorage.getItem('age');
-      document.getElementById('sex').innerHTML = localStorage.getItem('sex');
-      var sex = localStorage.getItem('sex');
-      var age = localStorage.getItem('age');
-      var y1 = parseFloat(localStorage.getItem('od5'));
-      var y2 = parseFloat(localStorage.getItem('os5'));
-      var vision = Math.min(parseFloat(localStorage.getItem('od1')), parseFloat(localStorage.getItem('os1')));
-      if (vision > 0.9) {
-        document.getElementById('treatment').innerHTML = '無需處置';
-      } else if (vision > 0.7) {
-        document.getElementById('treatment').innerHTML = '點散瞳劑';
-      } else if (vision > 0.5) {
-        document.getElementById('treatment').innerHTML = '點散瞳劑、配戴一般眼鏡';
-      } else {
-        document.getElementById('treatment').innerHTML = '配戴一般眼鏡';
-      }
+      sex = document.getElementById('sex').innerHTML = localStorage.getItem('sex');
+      age = document.getElementById('age').innerHTML = localStorage.getItem('age');
+      od1 = document.getElementById('od1').innerHTML = parseFloat(localStorage.getItem('od1')).toFixed(1);
+      os1 = document.getElementById('os1').innerHTML = parseFloat(localStorage.getItem('os1')).toFixed(1);
+      od2 = document.getElementById('od2').innerHTML = parseFloat(localStorage.getItem('od2')).toFixed(2);
+      os2 = document.getElementById('os2').innerHTML = parseFloat(localStorage.getItem('os2')).toFixed(2);
+      od3 = document.getElementById('od3').innerHTML = parseFloat(localStorage.getItem('od3')).toFixed(2);
+      os3 = document.getElementById('os3').innerHTML = parseFloat(localStorage.getItem('os3')).toFixed(2);
+      od4 = document.getElementById('od4').innerHTML = parseFloat(localStorage.getItem('od4'));
+      os4 = document.getElementById('os4').innerHTML = parseFloat(localStorage.getItem('os4'));
+      od5 = document.getElementById('od5').innerHTML = parseFloat(localStorage.getItem('od5')).toFixed(2);
+      os5 = document.getElementById('os5').innerHTML = parseFloat(localStorage.getItem('os5')).toFixed(2);
+      y1 = parseFloat(od5);
+      y2 = parseFloat(os5);
+      Y = parseInt(localStorage.getItem('Y'));
+      M = parseInt(localStorage.getItem('M'));
+      features = [(sex=='男')?1:0, Y+M/12, od1, od2, od3, od4, os1, os2, os3, os4];
+      features = features.map(function(x) { return parseFloat(x); });
+      $.ajax({
+        url: 'https://jfc9ltqvbg.execute-api.ap-northeast-1.amazonaws.com/sm',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(features),
+        complete: function(data) {
+          console.log(data['responseText']);
+          switch (data['responseText']) {
+            case '不處置':
+              $('#suggestion').html('無需處置');
+              break;
+            case '一般眼鏡':
+              $('#suggestion').html('配戴一般眼鏡');
+              break;
+            case '散瞳劑':
+              $('#suggestion').html('點散瞳劑');
+              break;
+            case '一般眼鏡散瞳劑':
+              $('#suggestion').html('配戴一般眼鏡、點散瞳劑');
+              break;
+            case '角膜塑型片':
+              $('#suggestion').html('配戴角膜塑型片');
+              break;
+            case '散瞳劑角膜塑型片':
+              $('#suggestion').html('點散瞳劑、配戴角膜塑型片');
+              break;
+          }
+        }
+      });
     </script>
   </body>
 </html>
