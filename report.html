@@ -113,26 +113,11 @@
         data: JSON.stringify(features),
         complete: function(data) {
           console.log(data['responseText']);
-          switch (data['responseText']) {
-            case '不處置':
-              $('#suggestion').html('無需處置');
-              break;
-            case '一般眼鏡':
-              $('#suggestion').html('配戴一般眼鏡');
-              break;
-            case '散瞳劑':
-              $('#suggestion').html('點散瞳劑');
-              break;
-            case '一般眼鏡散瞳劑':
-              $('#suggestion').html('配戴一般眼鏡、點散瞳劑');
-              break;
-            case '角膜塑型片':
-              $('#suggestion').html('配戴角膜塑型片');
-              break;
-            case '散瞳劑角膜塑型片':
-              $('#suggestion').html('點散瞳劑、配戴角膜塑型片');
-              break;
-          }
+          if (data['responseText'] == '不處置') $('#suggestion').html('無需處置');
+          if (data['responseText'] == '一般眼鏡') $('#suggestion').html('配戴一般眼鏡');
+          if (data['responseText'] == '散瞳劑') $('#suggestion').html('點散瞳劑');
+          if (data['responseText'] == '一般眼鏡散瞳劑') $('#suggestion').html('配戴一般眼鏡、點散瞳劑');
+          if (data['responseText'] == '角膜塑型片') $('#suggestion').html('配戴角膜塑型片');
         }
       });
     </script>
