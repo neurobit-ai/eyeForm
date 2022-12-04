@@ -682,11 +682,12 @@
     site.onchange = function() {
       if (document.getElementById('email').value)
       $.ajax({
-        url: `https://script.google.com/macros/s/AKfycbxQ9syZwsCKqV-VomQu41ttXrDAlbraWhkM1tUjoRM-_Xt-01Lh1jL4MssVDRmh2EX4hw/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
+        url: `https://script.google.com/macros/s/AKfycbyJW93PvaeHQTUgwSTeHhsOmB8MONb6ayT_0JPYb11e4peoYcYE5XlTUEV4RXORFiysIw/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
           if (typeof data === 'object') {
+            localStorage.setItem('records', JSON.stringify(data));
             document.getElementById('caseNo').value = data[0][0];
             document.getElementById('dateOfBirth').value = new Date(Date.parse(data[0][2])+8*60*60*1000).toISOString().split('T')[0];
             document.getElementById('dateOfVisit').value = new Date(Date.parse(data[0][10])+8*60*60*1000).toISOString().split('T')[0];
@@ -850,7 +851,7 @@
 
     var report = document.getElementById("report");
     report.onclick = function() {
-      localStorage.clear();
+      // localStorage.clear();
       localStorage.setItem('medRecNo', medRecNo.value);
       localStorage.setItem('site', site.value);
       localStorage.setItem('age', document.getElementById('age').value);

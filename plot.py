@@ -1,4 +1,4 @@
-from js import sex, age, y1, y2
+from js import sex, age, y1, y2, records
 
 import pandas as pd
 
@@ -23,11 +23,12 @@ risk[2] = '軸長長於年齡正常範圍，屬中風險，建議半年回診檢
 risk[3] = '軸長甚長於年齡正常範圍，屬高風險，有極高近視惡化發展可能，建議3個月回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、避免坐姿不正，戶外活動需要配戴太陽眼鏡防藍光、UV），搭配葉黃素或魚油服用，並搭配積極治療控制。'
 
 import re
-m = re.match('(\d+)歲(\d+)', age)
-x = int(m.group(1)) + int(m.group(2)) / 12
+def x(age):
+    m = re.match('(\d+)歲(\d+)', age)
+    return int(m.group(1)) + int(m.group(2)) / 12
 
-if round(x) in range(3, 17):
-    p0, p50, p75, p90, p100 = data_to_plot.loc[sex].loc[round(x)]
+if round(x(age)) in range(3, 17):
+    p0, p50, p75, p90, p100 = data_to_plot.loc[sex].loc[round(x(age))]
     y = max(y1, y2)
     if y < p50:
         print(risk[0])
@@ -42,9 +43,18 @@ else:
 
 plot(sex)
 if y1:
-    plt.scatter(x, y1, color='red', label='OD')
+    plt.scatter(x(age), y1, color='red', label='OD')
 if y2:
-    plt.scatter(x, y2, color='blue', label='OS')
+    plt.scatter(x(age), y2, color='blue', label='OS')
+
+import json
+records = json.loads(records)
+for record in records:
+    if record[18]:
+        plt.scatter(x(record[11]), record[18], color='red')
+    if record[24]:
+        plt.scatter(x(record[11]), record[24], color='blue')
+
 plt.legend(loc='lower right')
 plt.xticks(range(3, 17))
 plt.yticks(range(20, 30))
