@@ -51,9 +51,9 @@ import json
 records = json.loads(records)
 for record in records:
     if record[18]:
-        plt.scatter(x(record[11]), record[18], color='red')
+        plt.scatter(x(record[11]), record[18], color='red', marker='.')
     if record[24]:
-        plt.scatter(x(record[11]), record[24], color='blue')
+        plt.scatter(x(record[11]), record[24], color='blue', marker='.')
 
 plt.legend(loc='lower right')
 plt.xticks(range(3, 17))
