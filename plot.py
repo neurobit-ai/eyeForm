@@ -14,7 +14,7 @@ def plot(sex):
     plt.fill_between(morf.index, morf['<lambda_3>'], morf['<lambda_2>'], color='orange', alpha=0.6, label='75~90%')
     plt.fill_between(morf.index, morf['<lambda_2>'], morf['<lambda_1>'], color='yellow', alpha=0.6, label='50~75%')
     plt.fill_between(morf.index, morf['<lambda_1>'], morf['<lambda_0>'], color='lightgreen', alpha=0.6, label='0~50%')
-    plt.title(f'Axial Length Growth in {MorF} Taiwanese Children', fontsize=14)
+    plt.title(f'Axial Length Growth in {MorF} Taiwanese Children', fontsize=12)
 
 risk = [...] * 4
 risk[0] = '軸長在年齡正常範圍內，屬無/少風險，建議一年定期檢查，無潛在近視發展狀況。'
@@ -58,6 +58,6 @@ for record in records:
 plt.legend(loc='lower right')
 plt.xticks(range(3, 17))
 plt.yticks(range(20, 30))
-plt.xlabel('Age', fontsize=14)
-plt.ylabel('Axial Length', fontsize=14)
+plt.xlabel('Age', fontsize=12)
+plt.ylabel('Axial Length', fontsize=12)
 plt
