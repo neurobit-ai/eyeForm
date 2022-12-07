@@ -29,15 +29,15 @@ def x(age):
 
 if round(x(age)) in range(3, 17):
     p0, p50, p75, p90, p100 = data_to_plot.loc[sex].loc[round(x(age))]
-    y = max(y1, y2)
-    if y < p50:
-        print(risk[0])
-    elif y < p75:
-        print(risk[1])
-    elif y < p90:
-        print(risk[2])
-    else:
-        print(risk[3])
+    for y,O in (y1,'右眼'), (y2,'左眼'):
+        if y < p50:
+            print(O+risk[0])
+        elif y < p75:
+            print(O+risk[1])
+        elif y < p90:
+            print(O+risk[2])
+        else:
+            print(O+risk[3])
 else:
     print('該年齡收案不足，無法提供具有統計意義之危險度分級。')
 
