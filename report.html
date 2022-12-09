@@ -109,7 +109,7 @@
       features = [(sex=='男')?1:0, Y+M/12, od1, od2, od3, od4, os1, os2, os3, os4];
       features = features.map(function(x) { return parseFloat(x); });
       $.ajax({
-        url: 'https://jfc9ltqvbg.execute-api.ap-northeast-1.amazonaws.com/sm',
+        url: 'https://aw7c8d4hh6.execute-api.ap-east-1.amazonaws.com/suggestion',
         type: 'POST',
         dataType: 'json',
         data: JSON.stringify(features),

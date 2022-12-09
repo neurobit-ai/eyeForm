@@ -35,7 +35,7 @@
         document.getElementById('email').value = decoded.email;
         $('#staticBackdrop').modal('hide');
         $.ajax({
-          url: 'https://jfc9ltqvbg.execute-api.ap-northeast-1.amazonaws.com/sm',
+          url: 'https://aw7c8d4hh6.execute-api.ap-east-1.amazonaws.com/suggestion',
           type: 'POST',
           dataType: 'json',
           data: JSON.stringify([1,2,3,4,5,6,7,8,9,10]),
@@ -830,22 +830,23 @@
       features.push(parseFloat(document.getElementById('os4').value));
       if (features.length == 10)
       $.ajax({
-        url: 'https://jfc9ltqvbg.execute-api.ap-northeast-1.amazonaws.com/sm',
+        url: 'https://aw7c8d4hh6.execute-api.ap-east-1.amazonaws.com/suggestion',
         type: 'POST',
         dataType: 'json',
         data: JSON.stringify(features),
         complete: function(data) {
-          console.log(data['responseText']);
+          suggestion = data['responseText'];
+          console.log(suggestion);
           $('#treatmentY').prop('checked', true);
           $('#treatment1').prop('disabled', false);
           $('#treatment2').prop('disabled', false);
           $('#treatment3').prop('disabled', false);
-          if (data['responseText'] == '不處置') treatments('', '', '');
-          if (data['responseText'] == '一般眼鏡') treatments('一般眼鏡', '', '');
-          if (data['responseText'] == '散瞳劑') treatments('', '0.1%', '');
-          if (data['responseText'] == '一般眼鏡散瞳劑') treatments('一般眼鏡', '0.1%', '');
-          if (data['responseText'] == '角膜塑型片') treatments('', '', '角膜塑型片');
-          // if (data['responseText'] == '散瞳劑角膜塑型片') treatments('', '0.1%', '角膜塑型片');
+          if (suggestion == '不處置') treatments('', '', '');
+          if (suggestion == '一般眼鏡') treatments('一般眼鏡', '', '');
+          if (suggestion == '散瞳劑') treatments('', '0.1%', '');
+          if (suggestion == '一般眼鏡散瞳劑') treatments('一般眼鏡', '0.1%', '');
+          if (suggestion == '角膜塑型片') treatments('', '', '角膜塑型片');
+          // if (suggestion == '散瞳劑角膜塑型片') treatments('', '0.1%', '角膜塑型片');
         }
       });
     }
