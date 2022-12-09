@@ -1,19 +1,19 @@
-from js import sex, age, y1, y2, records
+from js import sex, age, y1, y2, records, suggestion
 
 import pandas as pd
 
 import pickle
 with open('data_to_plot.pkl', 'rb') as f:
-    data_to_plot = pickle.load(f)
+    stacked_area, slope_groupby = pickle.load(f)
 
 import matplotlib.pyplot as plt
 def plot(sex):
-    morf = data_to_plot.loc[sex].loc[3:16]
+    area = stacked_area.loc[sex].loc[3:16]
     MorF = {'男': 'Male', '女': 'Female'}[sex]
-    plt.fill_between(morf.index, morf['<lambda_4>'], morf['<lambda_3>'], color='red', alpha=0.6, label='90~100%')
-    plt.fill_between(morf.index, morf['<lambda_3>'], morf['<lambda_2>'], color='orange', alpha=0.6, label='75~90%')
-    plt.fill_between(morf.index, morf['<lambda_2>'], morf['<lambda_1>'], color='yellow', alpha=0.6, label='50~75%')
-    plt.fill_between(morf.index, morf['<lambda_1>'], morf['<lambda_0>'], color='lightgreen', alpha=0.6, label='0~50%')
+    plt.fill_between(area.index, area['P100'], area['P90'], color='red', alpha=0.6, label='90~100%')
+    plt.fill_between(area.index, area['P90'], area['P75'], color='orange', alpha=0.6, label='75~90%')
+    plt.fill_between(area.index, area['P75'], area['P50'], color='yellow', alpha=0.6, label='50~75%')
+    plt.fill_between(area.index, area['P50'], area['P0'], color='lightgreen', alpha=0.6, label='0~50%')
     plt.title(f'Axial Length Growth of {MorF} Children in Taiwan', fontsize=12)
 
 risk = [...] * 4
@@ -28,7 +28,7 @@ def x(age):
     return int(m.group(1)) + int(m.group(2)) / 12
 
 if round(x(age)) in range(3, 17):
-    p0, p50, p75, p90, p100 = data_to_plot.loc[sex].loc[round(x(age))]
+    p0, p50, p75, p90, p100 = stacked_area.loc[sex].loc[round(x(age))]
     for y,O in (y1,'右眼'), (y2,'左眼'):
         if y < p50:
             print(O+risk[0])
@@ -44,8 +44,12 @@ else:
 plot(sex)
 if y1:
     plt.scatter(x(age), y1, color='red', label='OD')
+    if slope_groupby[sex][suggestion]:
+        plt.scatter(x(age)+1, y1+slope_groupby[sex][suggestion], color='red', marker='*')
 if y2:
     plt.scatter(x(age), y2, color='blue', label='OS')
+    if slope_groupby[sex][suggestion]:
+        plt.scatter(x(age)+1, y2+slope_groupby[sex][suggestion], color='blue', marker='*')
 
 import json
 records = json.loads(records)

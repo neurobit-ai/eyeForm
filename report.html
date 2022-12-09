@@ -78,11 +78,6 @@
           <td colspan="3" align="center"><div id="plot"></div></td>
         </tr>
         <tr>
-          <th scope="row">軸長變化趨勢</th>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
           <td colspan="3" align="center"><div id="table"></div></td>
         </tr>
       </tbody>
@@ -119,12 +114,13 @@
         dataType: 'json',
         data: JSON.stringify(features),
         complete: function(data) {
-          console.log(data['responseText']);
-          if (data['responseText'] == '不處置') $('#suggestion').html('無需處置');
-          if (data['responseText'] == '一般眼鏡') $('#suggestion').html('配戴一般眼鏡');
-          if (data['responseText'] == '散瞳劑') $('#suggestion').html('點散瞳劑');
-          if (data['responseText'] == '一般眼鏡散瞳劑') $('#suggestion').html('配戴一般眼鏡、點散瞳劑');
-          if (data['responseText'] == '角膜塑型片') $('#suggestion').html('配戴角膜塑型片');
+          suggestion = data['responseText'];
+          console.log(suggestion);
+          if (suggestion == '不處置') $('#suggestion').html('無需處置');
+          if (suggestion == '一般眼鏡') $('#suggestion').html('配戴一般眼鏡');
+          if (suggestion == '散瞳劑') $('#suggestion').html('點散瞳劑');
+          if (suggestion == '一般眼鏡散瞳劑') $('#suggestion').html('配戴一般眼鏡、點散瞳劑');
+          if (suggestion == '角膜塑型片') $('#suggestion').html('配戴角膜塑型片');
         }
       });
       records = localStorage.getItem('records');
