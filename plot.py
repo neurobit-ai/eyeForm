@@ -64,4 +64,5 @@ plt.xticks(range(3, 17))
 plt.yticks(range(20, 30))
 plt.xlabel('Age', fontsize=12)
 plt.ylabel('Axial Length', fontsize=12)
+plt.margins(0)
 plt
