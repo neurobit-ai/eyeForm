@@ -44,11 +44,11 @@ else:
 plot(sex)
 if y1:
     plt.scatter(x(age), y1, color='red', label='OD')
-    if suggestion:
+    if slope_groupby[sex].get(suggestion):
         plt.scatter(x(age)+1, y1+slope_groupby[sex][suggestion], color='red', label='OD in 1 yr', marker='*')
 if y2:
     plt.scatter(x(age), y2, color='blue', label='OS')
-    if suggestion:
+    if slope_groupby[sex].get(suggestion):
         plt.scatter(x(age)+1, y2+slope_groupby[sex][suggestion], color='blue', label='OS in 1 yr', marker='*')
 
 import json
