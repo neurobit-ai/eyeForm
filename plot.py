@@ -4,7 +4,7 @@ import pandas as pd
 
 import pickle
 with open('data_to_plot.pkl', 'rb') as f:
-    stacked_area, slope_groupby = pickle.load(f)
+    db_version, slope_groupby, stacked_area = pickle.load(f)
 
 import matplotlib.pyplot as plt
 def plot(sex):
@@ -65,4 +65,5 @@ plt.yticks(range(20, 30))
 plt.xlabel('Age', fontsize=12)
 plt.ylabel('Axial Length', fontsize=12)
 plt.margins(0)
+plt.text(16, 18.5, f'{db_version}', horizontalalignment='right', fontsize=8)
 plt
