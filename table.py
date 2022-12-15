@@ -23,4 +23,4 @@ df = pd.DataFrame(table)
 df = df.T
 df.columns = df.loc['Age__']
 df = df.drop(index='Age__')
-df
+display(df, target='table')

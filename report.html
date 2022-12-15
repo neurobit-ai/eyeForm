@@ -16,16 +16,12 @@
 
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-    <py-env>
-        - pandas
-        - matplotlib
-        - paths:
-          - ./data_to_plot.pkl
-    </py-env>
-    <py-script output="plot" src="plot.py">
-    </py-script>
-    <py-script output="table" src="table.py">
-    </py-script>
+    <py-config>
+      packages = ["pandas", "matplotlib"]
+
+      [[fetch]]
+      files = ["./data_to_plot.pkl"]
+    </py-config>
   </head>
   <body class="p-3 m-0 border-0 bd-example">
     <table class="table">
@@ -72,7 +68,10 @@
         <tr>
           <th scope="row">危險度分析</th>
           <td><span id="age"></span> / <span id="sex"></span>生</td>
-          <td></td>
+          <td><span id="now"></span></td>
+        </tr>
+        <tr>
+          <td colspan="3" align="center"><div id="advice"></div></td>
         </tr>
         <tr>
           <td colspan="3" align="center"><div id="plot"></div></td>
@@ -88,6 +87,8 @@
       </tbody>
     </table>
     <script>
+      now = new Date();
+      document.getElementById('now').innerHTML = now.toLocaleString();
       document.getElementById('site').innerHTML = localStorage.getItem('site');
       document.getElementById('medRecNo').innerHTML = localStorage.getItem('medRecNo');
       sex = document.getElementById('sex').innerHTML = localStorage.getItem('sex');
@@ -125,5 +126,7 @@
       });
       records = localStorage.getItem('records');
     </script>
+    <py-script src="plot.py"></py-script>
+    <py-script src="table.py"></py-script>
   </body>
 </html>
