@@ -1,4 +1,4 @@
-from js import sex, age, y1, y2, records, suggestion
+from js import sex, age, y1, y2, records, suggestion, localStorage
 
 import pandas as pd
 
@@ -30,22 +30,23 @@ def x(age):
 
 if round(x(age)) in range(3, 17):
     p0, p50, p75, p90, p100 = stacked_area.loc[sex].loc[round(x(age))]
-    for y,O in (y1,'右眼'), (y2,'左眼'):
+    for y,O_ in (y1,'右眼'), (y2,'左眼'):
         if y < p50:
-            display(O+risk[0], target='advice')
-            Risk[O] = 0
+            display(f'{O_}{risk[0]}', target='advice')
+            localStorage.setItem(O_, 0)
         elif y < p75:
-            display(O+risk[1], target='advice')
-            Risk[O] = 1
+            display(f'{O_}{risk[1]}', target='advice')
+            localStorage.setItem(O_, 1)
         elif y < p90:
-            display(O+risk[2], target='advice')
-            Risk[O] = 2
+            display(f'{O_}{risk[2]}', target='advice')
+            localStorage.setItem(O_, 2)
         else:
-            display(O+risk[3], target='advice')
-            Risk[O] = 3
+            display(f'{O_}{risk[3]}', target='advice')
+            localStorage.setItem(O_, 3)
 else:
     display('該年齡收案不足，無法提供具有統計意義之危險度分級。', target='advice')
-    Risk['右眼'] = Risk['左眼'] = ''
+    localStorage.setItem('右眼', '')
+    localStorage.setItem('左眼', '')
 
 plot(sex)
 if y1:

@@ -36,9 +36,11 @@ $(function() {
 
 					$('#caseNo').prop('disabled', false);
 					$('#age').prop('disabled', false);
+					$('#odRisk').val(localStorage.getItem('右眼'));
+					$('#osRisk').val(localStorage.getItem('左眼'));
 					$.ajax({   	
 				      type: "POST",
-				      url: "https://script.google.com/macros/s/AKfycbxQ9syZwsCKqV-VomQu41ttXrDAlbraWhkM1tUjoRM-_Xt-01Lh1jL4MssVDRmh2EX4hw/exec",
+				      url: "https://script.google.com/macros/s/AKfycbyhJDSlXVqkUO4KKd0JkbFXhYKSo_4H20t_zeCjx7ZPFCYLww2ZYke6IlMpj9_JqaMLVw/exec",
 				      data: $(form).serialize(),
 
 				      beforeSend: function() { 

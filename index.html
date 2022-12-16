@@ -92,6 +92,8 @@
               </div>
 
               <form method="post" id="eyeForm" name="eyeForm">
+                <input type="hidden" name="odRisk" id="odRisk">
+                <input type="hidden" name="osRisk" id="osRisk">
                 <input type="hidden" name="name" id="name">
                 <input type="hidden" name="email" id="email">
 
@@ -683,7 +685,7 @@
     site.onchange = function() {
       if (document.getElementById('email').value)
       $.ajax({
-        url: `https://script.google.com/macros/s/AKfycbyJW93PvaeHQTUgwSTeHhsOmB8MONb6ayT_0JPYb11e4peoYcYE5XlTUEV4RXORFiysIw/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
+        url: `https://script.google.com/macros/s/AKfycbyhJDSlXVqkUO4KKd0JkbFXhYKSo_4H20t_zeCjx7ZPFCYLww2ZYke6IlMpj9_JqaMLVw/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
