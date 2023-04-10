@@ -683,6 +683,7 @@
 
     var site = document.getElementById("site");
     site.onchange = function() {
+      localStorage.clear();
       if (document.getElementById('email').value)
       $.ajax({
         url: `https://script.google.com/macros/s/AKfycbx75LIQkagfyeoMc6Uu9sLrHZF0cZOtSdyXhTanCmr5D0UxJd5PMO0VwjaFx6ppWZf49Q/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
@@ -731,8 +732,10 @@
             outputs['os2value'].innerHTML = (data[0][21] === '')?'❓':data[0][21].toFixed(2);
             outputs['os3value'].innerHTML = (data[0][22] === '')?'❓':data[0][22].toFixed(2);
           }
-          else
+          else {
+            localStorage.setItem('records', JSON.stringify([]));
             document.getElementById('caseNo').value = data;
+          }
         }
       });
     }
@@ -855,7 +858,6 @@
 
     var report = document.getElementById("report");
     report.onclick = function() {
-      // localStorage.clear();
       localStorage.setItem('medRecNo', medRecNo.value);
       localStorage.setItem('site', site.value);
       localStorage.setItem('age', document.getElementById('age').value);
