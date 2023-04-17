@@ -641,8 +641,11 @@
                     <button type="button" id="suggestion" class="btn btn-outline-primary btn-rounded py-0 px-4">
                       處置建議
                     </button>
-                    <button type="button" id="report" class="btn btn-outline-primary btn-rounded py-0 px-4">
-                      危險度分析
+                    <button type="button" id="report1" class="btn btn-outline-primary btn-rounded py-0 px-4">
+                      軸長危險度分析
+                    </button>
+                    <button type="button" id="report2" class="btn btn-outline-primary btn-rounded py-0 px-4">
+                      球面度數危險度分析
                     </button>
                     <input type="submit" id="submit" value="上傳" class="btn btn-outline-primary btn-rounded py-0 px-4">
                     <span class="submitting"></span>
@@ -856,8 +859,8 @@
       });
     }
 
-    var report = document.getElementById("report");
-    report.onclick = function() {
+    var report1 = document.getElementById("report1");
+    report1.onclick = function() {
       localStorage.setItem('medRecNo', medRecNo.value);
       localStorage.setItem('site', site.value);
       localStorage.setItem('age', document.getElementById('age').value);
@@ -874,6 +877,28 @@
       localStorage.setItem('os5', (os5int.value >= 20 && os5int.value <= 30)?os5int.value+os5dec.value:0);
       localStorage.setItem('Y', year);
       localStorage.setItem('M', month);
+      localStorage.setItem('report', '軸長');
+      window.open('report.html');
+    }
+    var report2 = document.getElementById("report2");
+    report2.onclick = function() {
+      localStorage.setItem('medRecNo', medRecNo.value);
+      localStorage.setItem('site', site.value);
+      localStorage.setItem('age', document.getElementById('age').value);
+      localStorage.setItem('sex', document.querySelector('input[name="sex"]:checked').value);
+      localStorage.setItem('od1', document.getElementById('od1').value);
+      localStorage.setItem('os1', document.getElementById('os1').value);
+      localStorage.setItem('od2', document.getElementById('od2').value);
+      localStorage.setItem('os2', document.getElementById('os2').value);
+      localStorage.setItem('od3', document.getElementById('od3').value);
+      localStorage.setItem('os3', document.getElementById('os3').value);
+      localStorage.setItem('od4', document.getElementById('od4').value);
+      localStorage.setItem('os4', document.getElementById('os4').value);
+      localStorage.setItem('od5', (od5int.value >= 20 && od5int.value <= 30)?od5int.value+od5dec.value:0);
+      localStorage.setItem('os5', (os5int.value >= 20 && os5int.value <= 30)?os5int.value+os5dec.value:0);
+      localStorage.setItem('Y', year);
+      localStorage.setItem('M', month);
+      localStorage.setItem('report', '球面度數');
       window.open('report.html');
     }
   </script>

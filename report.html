@@ -103,8 +103,15 @@
       os4 = document.getElementById('os4').innerHTML = parseFloat(localStorage.getItem('os4'));
       od5 = document.getElementById('od5').innerHTML = parseFloat(localStorage.getItem('od5')).toFixed(2);
       os5 = document.getElementById('os5').innerHTML = parseFloat(localStorage.getItem('os5')).toFixed(2);
-      y1 = parseFloat(od5);
-      y2 = parseFloat(os5);
+      report = localStorage.getItem('report');
+      if (report == '軸長') {
+        y1 = parseFloat(od5);
+        y2 = parseFloat(os5);
+      }
+      if (report == '球面度數') {
+        y1 = parseFloat(od2);
+        y2 = parseFloat(os2);
+      }
       Y = parseInt(localStorage.getItem('Y'));
       M = parseInt(localStorage.getItem('M'));
       features = [(sex=='男')?1:0, Y+M/12, od1, od2, od3, od4, os1, os2, os3, os4];

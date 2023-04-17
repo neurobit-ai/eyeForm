@@ -1,4 +1,4 @@
-from js import sex, age, y1, y2, records
+from js import sex, age, y1, y2, records, report
 
 import re
 def _y_m(age):
@@ -12,8 +12,9 @@ table['OS'] = [f'{y2:.2f}']
 
 import json
 records = json.loads(records)
+od, os = (18, 24) if report == '軸長' else (15, 21)
 for record in records:
-    if record[18] or record[24]:
+    if record[od] or record[os]:
         table['Age__'].insert(0, f'{_y_m(record[11])}')
         table['OD'].insert(0, f'{record[18]:.2f}')
         table['OS'].insert(0, f'{record[24]:.2f}')

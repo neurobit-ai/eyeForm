@@ -1,4 +1,4 @@
-from js import sex, age, y1, y2, records, suggestion, localStorage
+from js import sex, age, y1, y2, records, suggestion, localStorage, report
 
 import pandas as pd
 
@@ -14,13 +14,13 @@ def plot(sex):
     plt.fill_between(area.index, area['P90'], area['P75'], color='orange', alpha=0.6, label='75~90%')
     plt.fill_between(area.index, area['P75'], area['P50'], color='yellow', alpha=0.6, label='50~75%')
     plt.fill_between(area.index, area['P50'], area['P0'], color='lightgreen', alpha=0.6, label='0~50%')
-    plt.title(f'Axial Length Growth of {MorF} Children in Taiwan', fontsize=12)
+    plt.title(f"Trend of {MorF} Children in Taiwan", fontsize=12)
 
 risk = [...] * 4
-risk[0] = '軸長在年齡正常範圍內，屬無/少風險，建議一年定期檢查，無潛在近視發展狀況。'
-risk[1] = '軸長稍長於年齡正常範圍，屬低風險，建議一年定期檢查，需改變生活型態及減少外在環境影響。'
-risk[2] = '軸長長於年齡正常範圍，屬中風險，建議半年回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、戶外活動需要配戴太陽眼鏡防藍光、UV），並搭配葉黃素或魚油服用。'
-risk[3] = '軸長甚長於年齡正常範圍，屬高風險，有極高近視惡化發展可能，建議3個月回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、避免坐姿不正，戶外活動需要配戴太陽眼鏡防藍光、UV），搭配葉黃素或魚油服用，並搭配積極治療控制。'
+risk[0] = f'{report}在年齡正常範圍內，屬無/少風險，建議一年定期檢查，無潛在近視發展狀況。'
+risk[1] = f'{report}稍長於年齡正常範圍，屬低風險，建議一年定期檢查，需改變生活型態及減少外在環境影響。'
+risk[2] = f'{report}長於年齡正常範圍，屬中風險，建議半年回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、戶外活動需要配戴太陽眼鏡防藍光、UV），並搭配葉黃素或魚油服用。'
+risk[3] = f'{report}甚長於年齡正常範圍，屬高風險，有極高近視惡化發展可能，建議3個月回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、避免坐姿不正，戶外活動需要配戴太陽眼鏡防藍光、UV），搭配葉黃素或魚油服用，並搭配積極治療控制。'
 Risk = {}
 
 import re
@@ -30,19 +30,19 @@ def x(age):
 
 if round(x(age)) in range(3, 17):
     p0, p50, p75, p90, p100 = stacked_area.loc[sex].loc[round(x(age))]
-    for y,O_ in (y1,'右眼'), (y2,'左眼'):
+    for y, eye in (y1, '右眼'), (y2, '左眼'):
         if y < p50:
-            display(f'{O_}{risk[0]}', target='advice')
-            localStorage.setItem(O_, 0)
+            display(f'{eye}{risk[0]}', target='advice')
+            localStorage.setItem(eye, 0)
         elif y < p75:
-            display(f'{O_}{risk[1]}', target='advice')
-            localStorage.setItem(O_, 1)
+            display(f'{eye}{risk[1]}', target='advice')
+            localStorage.setItem(eye, 1)
         elif y < p90:
-            display(f'{O_}{risk[2]}', target='advice')
-            localStorage.setItem(O_, 2)
+            display(f'{eye}{risk[2]}', target='advice')
+            localStorage.setItem(eye, 2)
         else:
-            display(f'{O_}{risk[3]}', target='advice')
-            localStorage.setItem(O_, 3)
+            display(f'{eye}{risk[3]}', target='advice')
+            localStorage.setItem(eye, 3)
 else:
     display('該年齡收案不足，無法提供具有統計意義之危險度分級。', target='advice')
     localStorage.setItem('右眼', '')
@@ -60,17 +60,18 @@ if y2 and slope_groupby[sex].get(suggestion):
 
 import json
 records = json.loads(records)
+od, os = (18, 24) if report == '軸長' else (15, 21)
 for record in records:
-    if record[18]:
-        plt.scatter(x(record[11]), record[18], color='red', marker='.')
-    if record[24]:
-        plt.scatter(x(record[11]), record[24], color='blue', marker='.')
+    if record[od]:
+        plt.scatter(x(record[11]), record[od], color='red', marker='.')
+    if record[os]:
+        plt.scatter(x(record[11]), record[os], color='blue', marker='.')
 
 plt.legend(loc='lower right')
 plt.xticks(range(3, 17))
-plt.yticks(range(20, 30))
+plt.yticks(range(20, 30) if report == '軸長' else range(-8, 7))
 plt.xlabel('Age', fontsize=12)
-plt.ylabel('Axial Length', fontsize=12)
+plt.ylabel('Axial Length' if report == '軸長' else 'SPH', fontsize=12)
 plt.margins(0)
 plt.text(16, 18.8 if sex=='女' else 19.2, f'{db_version}', horizontalalignment='right', fontsize=8)
 display(plt, target='plot')
