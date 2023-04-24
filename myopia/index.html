@@ -13,17 +13,17 @@
 
     <!-- <link href="https://fonts.googleapis.com/css?family=Oswald:300,400|Roboto+Mono&display=swap" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="fonts/icomoon/style.css"> -->
-    <link rel="stylesheet" href="css/bootstrap.513.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="../css/bootstrap.513.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/myopia-main.js"></script>
   </head>
 
   <body class="bg-light">
-    <script src="js/jwt-decode.js"></script>
+    <script src="../js/jwt-decode.js"></script>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
       function handleCredentialResponse(response) {
@@ -689,7 +689,7 @@
       localStorage.clear();
       if (document.getElementById('email').value)
       $.ajax({
-        url: `https://script.google.com/macros/s/AKfycbx75LIQkagfyeoMc6Uu9sLrHZF0cZOtSdyXhTanCmr5D0UxJd5PMO0VwjaFx6ppWZf49Q/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
+        url: `https://script.google.com/macros/s/AKfycby1eLmiT7l1x7UQ6hB2KxHTlYmXpkm87t3Zn4NH5A2Btqo-knqaC5NzLT09X5mo6Mss/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
         type: 'GET',
         dataType: 'json',
         success: function(data) {
@@ -878,7 +878,7 @@
       localStorage.setItem('Y', year);
       localStorage.setItem('M', month);
       localStorage.setItem('report', '軸長');
-      window.open('report.html');
+      window.open('../report.html');
     }
     var report2 = document.getElementById("report2");
     report2.onclick = function() {
@@ -899,7 +899,7 @@
       localStorage.setItem('Y', year);
       localStorage.setItem('M', month);
       localStorage.setItem('report', '球面度數');
-      window.open('report.html');
+      window.open('../report.html');
     }
   </script>
   </body>

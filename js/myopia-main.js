@@ -40,7 +40,7 @@ $(function() {
 					$('#osRisk').val(localStorage.getItem('左眼'));
 					$.ajax({   	
 				      type: "POST",
-				      url: "https://script.google.com/macros/s/AKfycbx75LIQkagfyeoMc6Uu9sLrHZF0cZOtSdyXhTanCmr5D0UxJd5PMO0VwjaFx6ppWZf49Q/exec",
+				      url: "https://script.google.com/macros/s/AKfycby1eLmiT7l1x7UQ6hB2KxHTlYmXpkm87t3Zn4NH5A2Btqo-knqaC5NzLT09X5mo6Mss/exec",
 				      data: $(form).serialize(),
 
 				      beforeSend: function() { 
