@@ -16,8 +16,8 @@ od, os = (18, 24) if report == '軸長' else (15, 21)
 for record in records:
     if record[od] or record[os]:
         table['Age__'].insert(0, f'{_y_m(record[11])}')
-        table['OD'].insert(0, f'{record[18]:.2f}')
-        table['OS'].insert(0, f'{record[24]:.2f}')
+        table['OD'].insert(0, f'{record[od]:.2f}')
+        table['OS'].insert(0, f'{record[os]:.2f}')
 
 import pandas as pd
 df = pd.DataFrame(table)
