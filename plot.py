@@ -90,13 +90,13 @@ for record in records:
         plt.scatter(x(record[11]), record[os], color='blue', marker='.')
 
 plt.legend(loc='lower right')
-plt.xticks(range(3, 17))
+plt.xticks(range(3, 17 if x(age) + 1 <= 16 else int(x(age)) + 2))
 plt.yticks(range(20, 30) if report == '軸長' else range(-8, 7))
 plt.xlabel('Age', fontsize=12)
 plt.ylabel('Axial Length' if report == '軸長' else 'SPH', fontsize=12)
 plt.margins(0)
 if report == '軸長':
-    plt.text(16, 18.8 if sex=='女' else 19.2, f'{db_version}', horizontalalignment='right', fontsize=8)
+    plt.text(x(age) + 1, 18.8 if sex=='女' else 19.2, f'{db_version}', horizontalalignment='right', fontsize=8)
 if report == '球面度數':
-    plt.text(16, -10 if sex=='女' else -11, f'{db_version}', horizontalalignment='right', fontsize=8)
+    plt.text(x(age) + 1, -8.5 if sex=='女' else -10.5, f'{db_version}', horizontalalignment='right', fontsize=8)
 display(plt, target='plot')
