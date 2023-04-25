@@ -96,7 +96,7 @@ plt.xlabel('Age', fontsize=12)
 plt.ylabel('Axial Length' if report == '軸長' else 'SPH', fontsize=12)
 plt.margins(0)
 if report == '軸長':
-    plt.text(x(age) + 1, 18.8 if sex=='女' else 19.2, f'{db_version}', horizontalalignment='right', fontsize=8)
+    plt.text(16 if x(age) + 1 < 16 else x(age) + 1, 18.8 if sex=='女' else 19.2, f'{db_version}', horizontalalignment='right', fontsize=8)
 if report == '球面度數':
-    plt.text(x(age) + 1, -8.5 if sex=='女' else -10.5, f'{db_version}', horizontalalignment='right', fontsize=8)
+    plt.text(16 if x(age) + 1 < 16 else x(age) + 1, -8.5 if sex=='女' else -10.5, f'{db_version}', horizontalalignment='right', fontsize=8)
 display(plt, target='plot')
