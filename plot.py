@@ -9,7 +9,10 @@ with open('data_to_plot.pkl', 'rb') as f:
 import matplotlib.pyplot as plt
 def plot(sex, report):
     area = stacked_area.loc[sex].loc[3:16]
-    MorF = {'男': 'Male', '女': 'Female'}[sex]
+    try:
+        MorF = {'男': 'Male', '女': 'Female'}[sex]
+    except
+        MorF = [sex]
     if report == '軸長':
         plt.fill_between(area.index, area['P100'], area['P90'], color='red', alpha=0.6, label='90~100%')
         plt.fill_between(area.index, area['P90'], area['P75'], color='orange', alpha=0.6, label='75~90%')
