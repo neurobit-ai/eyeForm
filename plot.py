@@ -11,7 +11,7 @@ def plot(sex, report):
     area = stacked_area.loc[sex].loc[3:16]
     try:
         MorF = {'男': 'Male', '女': 'Female'}[sex]
-    except
+    except:
         MorF = sex
     if report == '軸長':
         plt.fill_between(area.index, area['P100'], area['P90'], color='red', alpha=0.6, label='90~100%')
