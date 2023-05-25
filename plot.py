@@ -1,5 +1,5 @@
 from js import sex, age, y1, y2, records, suggestion, localStorage, report
-
+sex = {'Male': '男', 'Female': '女'}[sex]
 import pandas as pd
 
 import pickle
@@ -9,10 +9,7 @@ with open('data_to_plot.pkl', 'rb') as f:
 import matplotlib.pyplot as plt
 def plot(sex, report):
     area = stacked_area.loc[sex].loc[3:16]
-    try: 
-        MorF = {'男': 'Male', '女': 'Female'}[sex]
-    except:
-        sex = {'Male': '男', 'Female': '女'}[sex]
+    MorF = {'男': 'Male', '女': 'Female'}[sex]
     if report == '軸長':
         plt.fill_between(area.index, area['P100'], area['P90'], color='red', alpha=0.6, label='90~100%')
         plt.fill_between(area.index, area['P90'], area['P75'], color='orange', alpha=0.6, label='75~90%')
