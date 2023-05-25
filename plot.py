@@ -1,5 +1,7 @@
 from js import sex, age, y1, y2, records, suggestion, localStorage, report
-sex = {'Male': '男', 'Female': '女'}[sex]
+if 'ale' in sex:
+    sex = {'Male': '男', 'Female': '女'}[sex]
+  
 import pandas as pd
 
 import pickle
