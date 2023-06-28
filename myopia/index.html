@@ -103,7 +103,7 @@
                     <input type="text" class="form-control" name="medRecNo" id="medRecNo">
                   </div>
                   <div class="col-3 form-group">
-                    <label class="form-label" for="site">Hospital</label>
+                    <label class="form-label" for="site">Institution</label>
                     <select class="form-select" name="site" id="site">
                       <option value=""></option>
                       <option value="Neurobit">Neurobit</option>
@@ -119,11 +119,11 @@
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <label class="form-label" for="dateOfVisit">Date of visit Year/Month/Day AD</label>
+                    <label class="form-label" for="dateOfVisit">Date of visit</label>
                     <input type="date" class="form-control" name="dateOfVisit" id="dateOfVisit">
                   </div>
                   <div class="col-6 form-group">
-                    <label class="form-label" for="dateOfBirth">Date of birth Year/Month/Day AD</label>
+                    <label class="form-label" for="dateOfBirth">Date of birth</label>
                     <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth">
                   </div>
                 </div>
@@ -188,14 +188,14 @@
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <label class="form-label" for="od1">OD BVAC<span class="form-range-value" id="od1value"></span></label>
-                    <label class="form-label" for="od0">Wearing glasses</label>
+                    <label class="form-label" for="od1">OD BCVA<span class="form-range-value" id="od1value"></span></label>
+                    <label class="form-label" for="od0">with glasses</label>
                     <input type="checkbox" class="form-check-input" name="od0" id="od0" value="G">
                     <input type="range" class="form-range" min=0 max=1 step=0.1 name="od1" id="od1">
                   </div>
                   <div class="col-6 form-group">
-                    <label class="form-label" for="os1">OS BVAC<span class="form-range-value" id="os1value"></span></label>
-                    <label class="form-label" for="os0">Wearing glasses</label>
+                    <label class="form-label" for="os1">OS BCVA<span class="form-range-value" id="os1value"></span></label>
+                    <label class="form-label" for="os0">with glasses</label>
                     <input type="checkbox" class="form-check-input" name="os0" id="os0" value="G">
                     <input type="range" class="form-range" min=0 max=1 step=0.1 name="os1" id="os1">
                   </div>
@@ -203,22 +203,22 @@
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <label class="form-label" for="od2">OD SPH <span class="form-range-value" id="od2value"></span></label>
+                    <label class="form-label" for="od2">OD SPH<span class="form-range-value" id="od2value"></span></label>
                     <input type="range" class="form-range" min=-10 max=10 step=0.25 name="od2" id="od2">
                   </div>
                   <div class="col-6 form-group">
-                    <label class="form-label" for="os2">OS SPH <span class="form-range-value" id="os2value"></span></label>
+                    <label class="form-label" for="os2">OS SPH<span class="form-range-value" id="os2value"></span></label>
                     <input type="range" class="form-range" min=-10 max=10 step=0.25 name="os2" id="os2">
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <label class="form-label" for="od3">OD Cylindrical diopter <span class="form-range-value" id="od3value"></span></label>
+                    <label class="form-label" for="od3">OD CYL<span class="form-range-value" id="od3value"></span></label>
                     <input type="range" class="form-range" min=-7 max=0 step=0.25 name="od3" id="od3">
                   </div>
                   <div class="col-6 form-group">
-                    <label class="form-label" for="os3">OS Cylindrical diopter <span class="form-range-value" id="os3value"></span></label>
+                    <label class="form-label" for="os3">OS CYL<span class="form-range-value" id="os3value"></span></label>
                     <input type="range" class="form-range" min=-7 max=0 step=0.25 name="os3" id="os3">
                   </div>
                 </div>
@@ -332,7 +332,7 @@
 
                 <div class="row">
                   <div class="col-6 form-group">
-                    <label class="form-label" for="od5int">OD Axial length(mm)</label>
+                    <label class="form-label" for="od5int">OD AL(mm)</label>
                     <div class="row g-0">
                       <div class="col-6 form-group">
                         <select class="form-select" name="od5int" id="od5int">
@@ -459,7 +459,7 @@
                     </div>
                   </div>
                   <div class="col-6 form-group">
-                    <label class="form-label" for="os5int">OS Axial length(mm)</label>
+                    <label class="form-label" for="os5int">OS AL(mm)</label>
                     <div class="row g-0">
                       <div class="col-6 form-group">
                         <select class="form-select" name="os5int" id="os5int">
@@ -626,10 +626,10 @@
                     </select>
                   </div>
                   <div class="col-4 form-group">
-                    <label class="form-label" for="treatment3">Corneal reshaping lenses</label>
+                    <label class="form-label" for="treatment3">Ortho-K lenses</label>
                     <select class="form-select" name="treatment3" id="treatment3" disabled>
                       <option value=""></option>
-                      <option value="Corneal_reshaping_lenses">Corneal_reshaping_lenses</option>
+                      <option value="Ortho_K_lenses">Ortho_K_lenses</option>
                     </select>
                   </div>
                 </div>
@@ -638,7 +638,7 @@
 
                 <div class="col">
                   <div class="float-end form-group">
-                    <label class="form-label">Please note that the automatically filled recent appointment date needs to be updated👆</label><br>
+                    <label class="form-label">Reminder: Please update the automatically filled recent visit date👆</label><br>
                     <button type="button" id="suggestion" class="btn btn-outline-primary btn-rounded py-0 px-4">
                       Treatment recommendations
                     </button>
@@ -646,7 +646,7 @@
                       Axial length risk assessment
                     </button>
                     <button type="button" id="report2" class="btn btn-outline-primary btn-rounded py-0 px-4">
-                      Spherical refractive error risk assessment
+                      Spherical diopter risk assessment
                     </button>
                     <input type="submit" id="submit" value="Upload" class="btn btn-outline-primary btn-rounded py-0 px-4">
                     <span class="submitting"></span>
