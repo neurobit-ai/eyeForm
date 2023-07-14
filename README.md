@@ -8,6 +8,9 @@
 1. Run db_risk0123.ipynb <a href="https://colab.research.google.com/github/neurobit-ai/eyeForm/blob/main/db_risk0123.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 1. Open db_risk0123.xlsx, insert 2 rows on top, select risk columns, copy and paste into eyeForm.db
 
+- eyeForm/myopia.db.xlsx from Google Sheets for myopia website version: 
+[eyeForm/myopia.db.xlsx](https://docs.google.com/spreadsheets/d/1kBLwr1Lxec6yi5wEET5opkSKt_TD3cVQjICWlDyHS4o/edit#gid=1477633965)
+
 # SageMaker Serverless Inference
 - [Doc](https://docs.aws.amazon.com/sagemaker/latest/dg/serverless-endpoints.html)
 - [Repo](https://github.com/neurobit-ai/eyeForm-SageMaker)
