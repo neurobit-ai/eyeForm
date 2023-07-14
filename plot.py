@@ -25,10 +25,10 @@ def plot(sex, report):
     plt.title(f"Trend of {MorF} Children in Taiwan", fontsize=12)
 
 risk = [...] * 4
-risk[0] = f'{report}在年齡正常範圍內，屬無/少風險，建議一年定期檢查，無潛在近視發展狀況。'
-risk[1] = f'{report}稍長於年齡正常範圍，屬低風險，建議一年定期檢查，需改變生活型態及減少外在環境影響。'
-risk[2] = f'{report}長於年齡正常範圍，屬中風險，建議半年回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、戶外活動需要配戴太陽眼鏡防藍光、UV），並搭配葉黃素或魚油服用。'
-risk[3] = f'{report}甚長於年齡正常範圍，屬高風險，有極高近視惡化發展可能，建議3個月回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、避免坐姿不正，戶外活動需要配戴太陽眼鏡防藍光、UV），搭配葉黃素或魚油服用，並搭配積極治療控制。'
+risk[0] = f'{report}在年齡正常範圍內，屬低風險，建議一年定期檢查，無潛在近視發展狀況。'
+risk[1] = f'{report}稍長於年齡正常範圍，屬中風險，建議一年定期檢查，需改變生活型態及減少外在環境影響。'
+risk[2] = f'{report}長於年齡正常範圍，屬高風險，建議半年回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、戶外活動需要配戴太陽眼鏡防藍光、UV），並搭配葉黃素或魚油服用。'
+risk[3] = f'{report}甚長於年齡正常範圍，屬極高風險，有極高近視惡化發展可能，建議3個月回診檢查，需改變生活型態及減少外在環境影響（例：電腦及手機使用時間需要注意並適度休息、避免坐姿不正，戶外活動需要配戴太陽眼鏡防藍光、UV），搭配葉黃素或魚油服用，並搭配積極治療控制。'
 Risk = {}
 
 import re
@@ -91,7 +91,10 @@ for record in records:
     if record[os]:
         plt.scatter(x(record[11]), record[os], color='blue', marker='.')
 
-plt.legend(loc='lower right')
+if report == '軸長':
+    plt.legend(loc='lower right')
+if report == '球面度數':
+    plt.legend(loc='lower left')
 plt.xticks(range(3, 17 if x(age) + 1 <= 16 else int(x(age)) + 2))
 plt.yticks(range(20, 30) if report == '軸長' else range(-8, 7))
 plt.xlabel('Age', fontsize=12)
