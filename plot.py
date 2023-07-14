@@ -86,9 +86,9 @@ import json
 records = json.loads(records)
 od, os = (18, 24) if report == '軸長' else (15, 21)
 for record in records:
-    if record[od]:
+    if record[od] is not None:
         plt.scatter(x(record[11]), record[od], color='red', marker='.')
-    if record[os]:
+    if record[os] is not None:
         plt.scatter(x(record[11]), record[os], color='blue', marker='.')
 
 if report == '軸長':
