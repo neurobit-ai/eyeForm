@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>eyeForm - Neurobit AI</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Oswald:300,400|Roboto+Mono&display=swap" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="fonts/icomoon/style.css"> -->
+    <link rel="stylesheet" href="../css/bootstrap.513.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/myopia-main.js"></script>
+  </head>
+
+  <body class="bg-light">
+    <script src="../js/jwt-decode.js"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+      function handleCredentialResponse(response) {
+        var token = response.credential;
+        var decoded = jwt_decode(token);
+        console.log(decoded.name);
+        console.log(decoded.email);
+        document.getElementById('name').value = decoded.name;
+        document.getElementById('email').value = decoded.email;
+        $('#staticBackdrop').modal('hide');
+        $.ajax({
+          url: 'https://aw7c8d4hh6.execute-api.ap-east-1.amazonaws.com/suggestion',
+          type: 'POST',
+          dataType: 'json',
+          data: JSON.stringify([1,2,3,4,5,6,7,8,9,10]),
+          complete: function(data) {
+            console.log(data['responseText']);
+          }
+        });
+      }
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: "804327021269-tvgs2une4gdpepaslb7niggg1c0pldjp.apps.googleusercontent.com",
+          callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+          document.getElementById("buttonDiv"),
+          { theme: "filled_blue", size: "large", text: "continue_with" }  // customization attributes
+        );
+        // google.accounts.id.prompt(); // also display the One Tap dialog
+      }
+    </script>
+    <script type="text/javascript">
+      $(window).on('load', function() {
+          $('#staticBackdrop').modal('show');
+      });
+    </script>
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">eyeForm: Myopia tracking for school-aged children</h5>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          </div>
+          <div class="modal-body" id="buttonDiv">
+            ...
+          </div>
+          <div class="modal-footer">
+            Copyright © 2023 Neurobit Technologies Co., Ltd.
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <div class="container">
+        <div class="row justify-content-center">
+
+              <div class="col">
+                <div class="float-end form-group form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="darkMode">
+                  <label class="form-check-label" for="darkMode">Dark mode</label>
+                </div>
+              </div>
+
+              <form method="post" id="eyeForm" name="eyeForm">
+                <input type="hidden" name="odRisk" id="odRisk">
+                <input type="hidden" name="osRisk" id="osRisk">
+                <input type="hidden" name="name" id="name">
+                <input type="hidden" name="email" id="email">
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="medRecNo">Patient ID</label>
+                    <input type="text" class="form-control" name="medRecNo" id="medRecNo">
+                  </div>
+                  <div class="col-3 form-group">
+                    <label class="form-label" for="site">Institution</label>
+                    <select class="form-select" name="site" id="site">
+                      <option value=""></option>
+                      <option value="Neurobit">Neurobit</option>
+                      <option value="TTT">TTT</option>
+                      <option value="HHH">HHH</option>
+                    </select>
+                  </div>
+                  <div class="col-3 form-group">
+                    <label class="form-label" for="caseNo">Case No.</label>
+                    <input type="number" class="form-control" name="caseNo" id="caseNo" disabled>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="dateOfVisit">Date of visit</label>
+                    <input type="date" class="form-control" name="dateOfVisit" id="dateOfVisit">
+                  </div>
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="dateOfBirth">Date of birth</label>
+                    <input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-3 form-group">
+                    <label class="form-label" for="age">Age</label>
+                    <input type="text" class="form-control" name="age" id="age" disabled>
+                  </div>
+                  <div class="col-3 form-group">
+                    <label class="form-label" for="height">Height (cm)</label>
+                    <input type="number" min=1 step=0.1 class="form-control" name="height" id="height">
+                  </div>
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="pretermW">Preterm week</label>
+                    <div class="row g-0">
+                      <div class="col-5 form-group">
+                        <input type="number" min=0 step=1 class="form-control" name="pretermW" id="pretermW">
+                      </div>
+                      <div class="col-1 form-group">
+                        <label class="form-label" for="pretermW">Week</label>
+                      </div>
+                      <div class="col-5 form-group">
+                        <input type="number" min=0 step=1 max=6 class="form-control" name="pretermD" id="pretermD">
+                      </div>
+                      <div class="col-1 form-group">
+                        <label class="form-label" for="pretermD">Day</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label class="form-label">Sex</label>
+                    <input type="radio" class="form-check-input" name="sex" id="sexM" value="Male">
+                    <label class="form-label" for="sexM">Male　</label>
+                    <input type="radio" class="form-check-input" name="sex" id="sexF" value="Female">
+                    <label class="form-label" for="sexF">Female　</label>
+                  </div>
+                  <div class="col-6 form-group">
+                    <label class="form-label">Fetal status</label>
+                    <input type="radio" class="form-check-input" name="birth" id="birth" value="Single">
+                    <label class="form-label" for="birth">Single　</label>
+                    <input type="radio" class="form-check-input" name="birth" id="births" value="Multiple">
+                    <label class="form-label" for="births">Multiple　</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="fatherD">Father：degree of myopia ≦ -5D</label>
+                    <input type="number" max=-5 step=0.5 class="form-control" name="fatherD" id="fatherD">
+                  </div>
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="motherD">Mother：degree of myopia ≦ -5D</label>
+                    <input type="number" max=-5 step=0.5 class="form-control" name="motherD" id="motherD">
+                  </div>
+                </div>
+
+                <br><hr style="color:red"><br>
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="od1">OD BCVA<span class="form-range-value" id="od1value"></span></label>
+                    <label class="form-label" for="od0">with glasses</label>
+                    <input type="checkbox" class="form-check-input" name="od0" id="od0" value="G">
+                    <input type="range" class="form-range" min=0 max=1 step=0.1 name="od1" id="od1">
+                  </div>
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="os1">OS BCVA<span class="form-range-value" id="os1value"></span></label>
+                    <label class="form-label" for="os0">with glasses</label>
+                    <input type="checkbox" class="form-check-input" name="os0" id="os0" value="G">
+                    <input type="range" class="form-range" min=0 max=1 step=0.1 name="os1" id="os1">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="od2">OD SPH<span class="form-range-value" id="od2value"></span></label>
+                    <input type="range" class="form-range" min=-10 max=10 step=0.25 name="od2" id="od2">
+                  </div>
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="os2">OS SPH<span class="form-range-value" id="os2value"></span></label>
+                    <input type="range" class="form-range" min=-10 max=10 step=0.25 name="os2" id="os2">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="od3">OD CYL<span class="form-range-value" id="od3value"></span></label>
+                    <input type="range" class="form-range" min=-7 max=0 step=0.25 name="od3" id="od3">
+                  </div>
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="os3">OS CYL<span class="form-range-value" id="os3value"></span></label>
+                    <input type="range" class="form-range" min=-7 max=0 step=0.25 name="os3" id="os3">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="od4">OD Axis</label>
+                    <select class="form-select" name="od4" id="od4">
+                      <option value=""></option>
+                      <optgroup label="Common">
+                        <option value="0">0</option>
+                        <option value="90">90</option>
+                        <option value="180">180</option>
+                        <option value="10">10</option>
+                        <option value="170">170</option>
+                        <option value="20">20</option>
+                        <option value="160">160</option>
+                      </optgroup>
+                      <optgroup label="--------------------">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                        <option value="45">45</option>
+                        <option value="50">50</option>
+                        <option value="55">55</option>
+                        <option value="60">60</option>
+                        <option value="65">65</option>
+                        <option value="70">70</option>
+                        <option value="75">75</option>
+                        <option value="80">80</option>
+                        <option value="85">85</option>
+                        <option value="90">90</option>
+                        <option value="95">95</option>
+                        <option value="100">100</option>
+                        <option value="105">105</option>
+                        <option value="110">110</option>
+                        <option value="115">115</option>
+                        <option value="120">120</option>
+                        <option value="125">125</option>
+                        <option value="130">130</option>
+                        <option value="135">135</option>
+                        <option value="140">140</option>
+                        <option value="145">145</option>
+                        <option value="150">150</option>
+                        <option value="155">155</option>
+                        <option value="160">160</option>
+                        <option value="165">165</option>
+                        <option value="170">170</option>
+                        <option value="175">175</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="os4">OS Axis</label>
+                    <select class="form-select" name="os4" id="os4">
+                      <option value=""></option>
+                      <optgroup label="Common">
+                        <option value="0">0</option>
+                        <option value="90">90</option>
+                        <option value="180">180</option>
+                        <option value="10">10</option>
+                        <option value="170">170</option>
+                        <option value="20">20</option>
+                        <option value="160">160</option>
+                      </optgroup>
+                      <optgroup label="--------------------">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                        <option value="35">35</option>
+                        <option value="40">40</option>
+                        <option value="45">45</option>
+                        <option value="50">50</option>
+                        <option value="55">55</option>
+                        <option value="60">60</option>
+                        <option value="65">65</option>
+                        <option value="70">70</option>
+                        <option value="75">75</option>
+                        <option value="80">80</option>
+                        <option value="85">85</option>
+                        <option value="90">90</option>
+                        <option value="95">95</option>
+                        <option value="100">100</option>
+                        <option value="105">105</option>
+                        <option value="110">110</option>
+                        <option value="115">115</option>
+                        <option value="120">120</option>
+                        <option value="125">125</option>
+                        <option value="130">130</option>
+                        <option value="135">135</option>
+                        <option value="140">140</option>
+                        <option value="145">145</option>
+                        <option value="150">150</option>
+                        <option value="155">155</option>
+                        <option value="160">160</option>
+                        <option value="165">165</option>
+                        <option value="170">170</option>
+                        <option value="175">175</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="od5int">OD AL(mm)</label>
+                    <div class="row g-0">
+                      <div class="col-6 form-group">
+                        <select class="form-select" name="od5int" id="od5int">
+                          <option value=""></option>
+                          <option value="< 20">< 20</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="> 30">> 30</option>
+                        </select>
+                      </div>
+                      <div class="col-6 form-group">
+                        <select class="form-select" name="od5dec" id="od5dec">
+                          <option value=".00">.00</option>
+                          <option value=".01">.01</option>
+                          <option value=".02">.02</option>
+                          <option value=".03">.03</option>
+                          <option value=".04">.04</option>
+                          <option value=".05">.05</option>
+                          <option value=".06">.06</option>
+                          <option value=".07">.07</option>
+                          <option value=".08">.08</option>
+                          <option value=".09">.09</option>
+                          <option value=".10">.10</option>
+                          <option value=".11">.11</option>
+                          <option value=".12">.12</option>
+                          <option value=".13">.13</option>
+                          <option value=".14">.14</option>
+                          <option value=".15">.15</option>
+                          <option value=".16">.16</option>
+                          <option value=".17">.17</option>
+                          <option value=".18">.18</option>
+                          <option value=".19">.19</option>
+                          <option value=".20">.20</option>
+                          <option value=".21">.21</option>
+                          <option value=".22">.22</option>
+                          <option value=".23">.23</option>
+                          <option value=".24">.24</option>
+                          <option value=".25">.25</option>
+                          <option value=".26">.26</option>
+                          <option value=".27">.27</option>
+                          <option value=".28">.28</option>
+                          <option value=".29">.29</option>
+                          <option value=".30">.30</option>
+                          <option value=".31">.31</option>
+                          <option value=".32">.32</option>
+                          <option value=".33">.33</option>
+                          <option value=".34">.34</option>
+                          <option value=".35">.35</option>
+                          <option value=".36">.36</option>
+                          <option value=".37">.37</option>
+                          <option value=".38">.38</option>
+                          <option value=".39">.39</option>
+                          <option value=".40">.40</option>
+                          <option value=".41">.41</option>
+                          <option value=".42">.42</option>
+                          <option value=".43">.43</option>
+                          <option value=".44">.44</option>
+                          <option value=".45">.45</option>
+                          <option value=".46">.46</option>
+                          <option value=".47">.47</option>
+                          <option value=".48">.48</option>
+                          <option value=".49">.49</option>
+                          <option value=".50">.50</option>
+                          <option value=".51">.51</option>
+                          <option value=".52">.52</option>
+                          <option value=".53">.53</option>
+                          <option value=".54">.54</option>
+                          <option value=".55">.55</option>
+                          <option value=".56">.56</option>
+                          <option value=".57">.57</option>
+                          <option value=".58">.58</option>
+                          <option value=".59">.59</option>
+                          <option value=".60">.60</option>
+                          <option value=".61">.61</option>
+                          <option value=".62">.62</option>
+                          <option value=".63">.63</option>
+                          <option value=".64">.64</option>
+                          <option value=".65">.65</option>
+                          <option value=".66">.66</option>
+                          <option value=".67">.67</option>
+                          <option value=".68">.68</option>
+                          <option value=".69">.69</option>
+                          <option value=".70">.70</option>
+                          <option value=".71">.71</option>
+                          <option value=".72">.72</option>
+                          <option value=".73">.73</option>
+                          <option value=".74">.74</option>
+                          <option value=".75">.75</option>
+                          <option value=".76">.76</option>
+                          <option value=".77">.77</option>
+                          <option value=".78">.78</option>
+                          <option value=".79">.79</option>
+                          <option value=".80">.80</option>
+                          <option value=".81">.81</option>
+                          <option value=".82">.82</option>
+                          <option value=".83">.83</option>
+                          <option value=".84">.84</option>
+                          <option value=".85">.85</option>
+                          <option value=".86">.86</option>
+                          <option value=".87">.87</option>
+                          <option value=".88">.88</option>
+                          <option value=".89">.89</option>
+                          <option value=".90">.90</option>
+                          <option value=".91">.91</option>
+                          <option value=".92">.92</option>
+                          <option value=".93">.93</option>
+                          <option value=".94">.94</option>
+                          <option value=".95">.95</option>
+                          <option value=".96">.96</option>
+                          <option value=".97">.97</option>
+                          <option value=".98">.98</option>
+                          <option value=".99">.99</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 form-group">
+                    <label class="form-label" for="os5int">OS AL(mm)</label>
+                    <div class="row g-0">
+                      <div class="col-6 form-group">
+                        <select class="form-select" name="os5int" id="os5int">
+                          <option value=""></option>
+                          <option value="< 20">< 20</option>
+                          <option value="20">20</option>
+                          <option value="21">21</option>
+                          <option value="22">22</option>
+                          <option value="23">23</option>
+                          <option value="24">24</option>
+                          <option value="25">25</option>
+                          <option value="26">26</option>
+                          <option value="27">27</option>
+                          <option value="28">28</option>
+                          <option value="29">29</option>
+                          <option value="30">30</option>
+                          <option value="> 30">> 30</option>
+                        </select>
+                      </div>
+                      <div class="col-6 form-group">
+                        <select class="form-select" name="os5dec" id="os5dec">
+                          <option value=".00">.00</option>
+                          <option value=".01">.01</option>
+                          <option value=".02">.02</option>
+                          <option value=".03">.03</option>
+                          <option value=".04">.04</option>
+                          <option value=".05">.05</option>
+                          <option value=".06">.06</option>
+                          <option value=".07">.07</option>
+                          <option value=".08">.08</option>
+                          <option value=".09">.09</option>
+                          <option value=".10">.10</option>
+                          <option value=".11">.11</option>
+                          <option value=".12">.12</option>
+                          <option value=".13">.13</option>
+                          <option value=".14">.14</option>
+                          <option value=".15">.15</option>
+                          <option value=".16">.16</option>
+                          <option value=".17">.17</option>
+                          <option value=".18">.18</option>
+                          <option value=".19">.19</option>
+                          <option value=".20">.20</option>
+                          <option value=".21">.21</option>
+                          <option value=".22">.22</option>
+                          <option value=".23">.23</option>
+                          <option value=".24">.24</option>
+                          <option value=".25">.25</option>
+                          <option value=".26">.26</option>
+                          <option value=".27">.27</option>
+                          <option value=".28">.28</option>
+                          <option value=".29">.29</option>
+                          <option value=".30">.30</option>
+                          <option value=".31">.31</option>
+                          <option value=".32">.32</option>
+                          <option value=".33">.33</option>
+                          <option value=".34">.34</option>
+                          <option value=".35">.35</option>
+                          <option value=".36">.36</option>
+                          <option value=".37">.37</option>
+                          <option value=".38">.38</option>
+                          <option value=".39">.39</option>
+                          <option value=".40">.40</option>
+                          <option value=".41">.41</option>
+                          <option value=".42">.42</option>
+                          <option value=".43">.43</option>
+                          <option value=".44">.44</option>
+                          <option value=".45">.45</option>
+                          <option value=".46">.46</option>
+                          <option value=".47">.47</option>
+                          <option value=".48">.48</option>
+                          <option value=".49">.49</option>
+                          <option value=".50">.50</option>
+                          <option value=".51">.51</option>
+                          <option value=".52">.52</option>
+                          <option value=".53">.53</option>
+                          <option value=".54">.54</option>
+                          <option value=".55">.55</option>
+                          <option value=".56">.56</option>
+                          <option value=".57">.57</option>
+                          <option value=".58">.58</option>
+                          <option value=".59">.59</option>
+                          <option value=".60">.60</option>
+                          <option value=".61">.61</option>
+                          <option value=".62">.62</option>
+                          <option value=".63">.63</option>
+                          <option value=".64">.64</option>
+                          <option value=".65">.65</option>
+                          <option value=".66">.66</option>
+                          <option value=".67">.67</option>
+                          <option value=".68">.68</option>
+                          <option value=".69">.69</option>
+                          <option value=".70">.70</option>
+                          <option value=".71">.71</option>
+                          <option value=".72">.72</option>
+                          <option value=".73">.73</option>
+                          <option value=".74">.74</option>
+                          <option value=".75">.75</option>
+                          <option value=".76">.76</option>
+                          <option value=".77">.77</option>
+                          <option value=".78">.78</option>
+                          <option value=".79">.79</option>
+                          <option value=".80">.80</option>
+                          <option value=".81">.81</option>
+                          <option value=".82">.82</option>
+                          <option value=".83">.83</option>
+                          <option value=".84">.84</option>
+                          <option value=".85">.85</option>
+                          <option value=".86">.86</option>
+                          <option value=".87">.87</option>
+                          <option value=".88">.88</option>
+                          <option value=".89">.89</option>
+                          <option value=".90">.90</option>
+                          <option value=".91">.91</option>
+                          <option value=".92">.92</option>
+                          <option value=".93">.93</option>
+                          <option value=".94">.94</option>
+                          <option value=".95">.95</option>
+                          <option value=".96">.96</option>
+                          <option value=".97">.97</option>
+                          <option value=".98">.98</option>
+                          <option value=".99">.99</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <br><hr style="color:red"><br>
+
+                <div class="row">
+                  <div class="col-9 form-group">
+                    <input type="radio" class="form-check-input" name="treatment" id="treatmentN" value="N" checked>
+                    <label class="form-label" for="treatmentN">Untreated/Under observation　</label>
+                    <input type="radio" class="form-check-input" name="treatment" id="treatmentY" value="Y">
+                    <label class="form-label" for="treatmentY">Treatment procedure　</label>
+                  </div>
+                </div>
+                <br>
+                <div class="row g-2">
+                  <div class="col-4 form-group">
+                    <label class="form-label" for="treatment1">Glasses</label>
+                    <select class="form-select" name="treatment1" id="treatment1" disabled>
+                      <option value=""></option>
+                      <option value="Regular_glasses">Regular_glasses</option>
+                      <option value="Myopia_control_glasses_Zeiss_MyoVision">Myopia_control_glasses_Zeiss_MyoVision</option>
+                      <option value="Myopia_control_glasses_Hoya_MiyoSmart">Myopia_control_glasses_Hoya_MiyoSmart</option>
+                      <option value="Myopia_control_glasses_Essilor_Stellest">Myopia_control_glasses_Essilor_Stellest</option>
+                      <option value="Myopia_control_glasses_CooperVision_MiSight">Myopia_control_glasses_CooperVision_MiSight</option>
+                    </select>
+                  </div>
+                  <div class="col-4 form-group">
+                    <label class="form-label" for="treatment2">Mydriatic agent</label>
+                    <select class="form-select" name="treatment2" id="treatment2" disabled>
+                      <option value=""></option>
+                      <option value="Short_term">Short_term</option>
+                      <option value="0.01%">0.01%</option>
+                      <option value="0.02%">0.02%</option>
+                      <option value="0.03%">0.03%</option>
+                      <option value="0.05%">0.05%</option>
+                      <option value="0.1%">0.1%</option>
+                      <option value="0.3%">0.3%</option>
+                      <option value="0.5%">0.5%</option>
+                      <option value="1.0%">1.0%</option>
+                    </select>
+                  </div>
+                  <div class="col-4 form-group">
+                    <label class="form-label" for="treatment3">Ortho-K lenses</label>
+                    <select class="form-select" name="treatment3" id="treatment3" disabled>
+                      <option value=""></option>
+                      <option value="Ortho_K_lenses">Ortho_K_lenses</option>
+                    </select>
+                  </div>
+                </div>
+
+                <br><hr style="color:red"><br>
+
+                <div class="col">
+                  <div class="float-end form-group">
+                    <label class="form-label">Reminder: Please update the automatically filled recent visit date👆</label><br>
+                    <button type="button" id="suggestion" class="btn btn-outline-primary btn-rounded py-0 px-4">
+                      Treatment recommendations
+                    </button>
+                    <button type="button" id="report1" class="btn btn-outline-primary btn-rounded py-0 px-4">
+                      Axial length risk assessment
+                    </button>
+                    <button type="button" id="report2" class="btn btn-outline-primary btn-rounded py-0 px-4">
+                      Spherical diopter risk assessment
+                    </button>
+                    <input type="submit" id="submit" value="Upload" class="btn btn-outline-primary btn-rounded py-0 px-4">
+                    <span class="submitting"></span>
+                  </div>
+                </div>
+                <br><br>
+
+              </form>
+
+              <div id="form-message-warning mt-4"></div> 
+              <div id="form-message-success">
+                Upload completed!
+              </div>
+
+        </div>
+      </div>
+    </div>
+    
+  <script>
+    var darkMode = document.getElementById('darkMode');
+    darkMode.onclick = function() {
+      if (darkMode.checked) {
+        document.body.classList.remove('bg-light');
+        document.body.classList.add('bg-dark');
+        document.body.classList.add('text-light');
+      } else {
+        document.body.classList.remove('bg-dark');
+        document.body.classList.remove('text-light');
+        document.body.classList.add('bg-light');
+      }
+    };
+
+    var medRecNo = document.getElementById("medRecNo");
+    medRecNo.onclick = function() {
+      document.getElementById('site').value = '';
+      document.getElementById('caseNo').value = '';
+    }
+
+    var site = document.getElementById("site");
+    site.onchange = function() {
+      localStorage.clear();
+      if (document.getElementById('email').value)
+      $.ajax({
+        url: `https://script.google.com/macros/s/AKfycby1eLmiT7l1x7UQ6hB2KxHTlYmXpkm87t3Zn4NH5A2Btqo-knqaC5NzLT09X5mo6Mss/exec?medRecNo=${medRecNo.value}&site=${site.value}`,
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+          if (typeof data === 'object') {
+            localStorage.setItem('records', JSON.stringify(data));
+            document.getElementById('caseNo').value = data[0][0];
+            document.getElementById('dateOfBirth').value = new Date(Date.parse(data[0][2])+8*60*60*1000).toISOString().split('T')[0];
+            document.getElementById('dateOfVisit').value = new Date(Date.parse(data[0][10])+8*60*60*1000).toISOString().split('T')[0];
+            document.getElementById('age').value = data[0][11];
+            document.getElementById('height').value = data[0][12];
+            document.getElementById('pretermW').value = data[0][6];
+            document.getElementById('pretermD').value = data[0][7];
+            if (data[0][3] == '男')
+              document.getElementById('sexM').checked = true;
+            if (data[0][3] == '女')
+              document.getElementById('sexF').checked = true;
+            if (data[0][4] == '單')
+              document.getElementById('birth').checked = true;
+            if (data[0][4] == '多')
+              document.getElementById('births').checked = true;
+            document.getElementById('fatherD').value = data[0][8];
+            document.getElementById('motherD').value = data[0][9];
+            if (data[0][13] == 'G')
+              document.getElementById('od0').checked = true;
+            document.getElementById('od1').value = data[0][14];
+            document.getElementById('od2').value = data[0][15];
+            document.getElementById('od3').value = data[0][16];
+            document.getElementById('od4').value = data[0][17];
+            document.getElementById('od5int').value = parseInt(data[0][18]);
+            document.getElementById('od5dec').value = (data[0][18] - parseInt(data[0][18])).toFixed(2).toString().substring(1);
+            if (data[0][19] == 'G')
+              document.getElementById('os0').checked = true;
+            document.getElementById('os1').value = data[0][20];
+            document.getElementById('os2').value = data[0][21];
+            document.getElementById('os3').value = data[0][22];
+            document.getElementById('os4').value = data[0][23];
+            document.getElementById('os5int').value = parseInt(data[0][24]);
+            document.getElementById('os5dec').value = (data[0][24] - parseInt(data[0][24])).toFixed(2).toString().substring(1);
+            outputs['od1value'].innerHTML = (data[0][14] === '')?'❓':data[0][14].toFixed(1);
+            outputs['od2value'].innerHTML = (data[0][15] === '')?'❓':data[0][15].toFixed(2);
+            outputs['od3value'].innerHTML = (data[0][16] === '')?'❓':data[0][16].toFixed(2);
+            outputs['os1value'].innerHTML = (data[0][20] === '')?'❓':data[0][20].toFixed(1);
+            outputs['os2value'].innerHTML = (data[0][21] === '')?'❓':data[0][21].toFixed(2);
+            outputs['os3value'].innerHTML = (data[0][22] === '')?'❓':data[0][22].toFixed(2);
+          }
+          else {
+            localStorage.setItem('records', JSON.stringify([]));
+            document.getElementById('caseNo').value = data;
+          }
+        }
+      });
+    }
+
+    var dateOfVisit = document.getElementById('dateOfVisit');
+    var dateOfBirth = document.getElementById('dateOfBirth');
+    dateOfVisit.oninput = function() {
+      if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
+        var dov = dateOfVisit.value.split('-');
+        var dob = dateOfBirth.value.split('-');
+        year = parseInt(dov[0]) - parseInt(dob[0]);
+        month = parseInt(dov[1]) - parseInt(dob[1]);
+        console.log(year);
+        console.log(month);
+        if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
+          month--;
+        }
+        if (month < 0) {
+          year--;
+          month += 12;
+        }
+        document.getElementById('age').value = year + '歲' + month + '個月';
+      }
+    }
+    dateOfBirth.oninput = function() {
+      if (!isNaN(Date.parse(dateOfVisit.value)) && !isNaN(Date.parse(dateOfBirth.value))) {
+        var dov = dateOfVisit.value.split('-');
+        var dob = dateOfBirth.value.split('-');
+        year = parseInt(dov[0]) - parseInt(dob[0]);
+        month = parseInt(dov[1]) - parseInt(dob[1]);
+        console.log(year);
+        console.log(month);
+        if (parseInt(dov[2]) - parseInt(dob[2]) < 0) {
+          month--;
+        }
+        if (month < 0) {
+          year--;
+          month += 12;
+        }
+        document.getElementById('age').value = year + '歲' + month + '個月';
+      }
+    }
+
+    var sliders = document.getElementsByClassName("form-range");
+    var outputs = document.getElementsByClassName("form-range-value");
+    for (var i = 0; i < sliders.length; i++) {
+      sliders[i].oninput = function() {
+        var digits = 2;
+        if(this.id[2] == 1) digits = 1;
+        if(this.id[2] == 4) digits = 0;
+        outputs[this.id+'value'].innerHTML = Number.parseFloat(this.value).toFixed(digits);
+      }
+    }
+    
+    var od5int = document.getElementById("od5int");
+    od5int.onchange = function() {
+      $('#od5dec').prop('disabled', (od5int.value >= 20 && od5int.value <= 30)?false:true);
+    }
+    var os5int = document.getElementById("os5int");
+    os5int.onchange = function() {
+      $('#os5dec').prop('disabled', (os5int.value >= 20 && os5int.value <= 30)?false:true);
+    }
+
+    var treatmentN = document.getElementById("treatmentN");
+    treatmentN.onclick = function() {
+      $('#treatment1').prop('disabled', true);
+      $('#treatment2').prop('disabled', true);
+      $('#treatment3').prop('disabled', true);
+    }
+    var treatmentY = document.getElementById("treatmentY");
+    treatmentY.onclick = function() {
+      $('#treatment1').prop('disabled', false);
+      $('#treatment2').prop('disabled', false);
+      $('#treatment3').prop('disabled', false);
+    }
+
+    function treatments(treatment1, treatment2, treatment3) {
+      document.getElementById('treatment1').value = treatment1;
+      document.getElementById('treatment2').value = treatment2;
+      document.getElementById('treatment3').value = treatment3;
+    }
+    var suggestion = document.getElementById("suggestion");
+    suggestion.onclick = function() {
+      features = [];
+      if (document.getElementById('sexM').checked) features.push(1);
+      if (document.getElementById('sexF').checked) features.push(0);
+      if (document.getElementById('age').value) features.push(year + month/12);
+      features.push(parseFloat(document.getElementById('od1').value));
+      features.push(parseFloat(document.getElementById('od2').value));
+      features.push(parseFloat(document.getElementById('od3').value));
+      if (document.getElementById('od4').value)
+      features.push(parseFloat(document.getElementById('od4').value));
+      features.push(parseFloat(document.getElementById('os1').value));
+      features.push(parseFloat(document.getElementById('os2').value));
+      features.push(parseFloat(document.getElementById('os3').value));
+      if (document.getElementById('os4').value)
+      features.push(parseFloat(document.getElementById('os4').value));
+      if (features.length == 10)
+      $.ajax({
+        url: 'https://aw7c8d4hh6.execute-api.ap-east-1.amazonaws.com/suggestion',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(features),
+        complete: function(data) {
+          suggestion = data['responseText'];
+          console.log(suggestion);
+          $('#treatmentY').prop('checked', true);
+          $('#treatment1').prop('disabled', false);
+          $('#treatment2').prop('disabled', false);
+          $('#treatment3').prop('disabled', false);
+          if (suggestion == '不處置') treatments('', '', '');
+          if (suggestion == '一般眼鏡') treatments('一般眼鏡', '', '');
+          if (suggestion == '散瞳劑') treatments('', '0.1%', '');
+          if (suggestion == '一般眼鏡散瞳劑') treatments('一般眼鏡', '0.1%', '');
+          if (suggestion == '角膜塑型片') treatments('', '', '角膜塑型片');
+          // if (suggestion == '散瞳劑角膜塑型片') treatments('', '0.1%', '角膜塑型片');
+        }
+      });
+    }
+
+    var report1 = document.getElementById("report1");
+    report1.onclick = function() {
+      localStorage.setItem('medRecNo', medRecNo.value);
+      localStorage.setItem('site', site.value);
+      localStorage.setItem('age', document.getElementById('age').value);
+      localStorage.setItem('sex', document.querySelector('input[name="sex"]:checked').value);
+      localStorage.setItem('od1', document.getElementById('od1').value);
+      localStorage.setItem('os1', document.getElementById('os1').value);
+      localStorage.setItem('od2', document.getElementById('od2').value);
+      localStorage.setItem('os2', document.getElementById('os2').value);
+      localStorage.setItem('od3', document.getElementById('od3').value);
+      localStorage.setItem('os3', document.getElementById('os3').value);
+      localStorage.setItem('od4', document.getElementById('od4').value);
+      localStorage.setItem('os4', document.getElementById('os4').value);
+      localStorage.setItem('od5', (od5int.value >= 20 && od5int.value <= 30)?od5int.value+od5dec.value:0);
+      localStorage.setItem('os5', (os5int.value >= 20 && os5int.value <= 30)?os5int.value+os5dec.value:0);
+      localStorage.setItem('Y', year);
+      localStorage.setItem('M', month);
+      localStorage.setItem('report', '軸長');
+      window.open('report.html');
+    }
+    var report2 = document.getElementById("report2");
+    report2.onclick = function() {
+      localStorage.setItem('medRecNo', medRecNo.value);
+      localStorage.setItem('site', site.value);
+      localStorage.setItem('age', document.getElementById('age').value);
+      localStorage.setItem('sex', document.querySelector('input[name="sex"]:checked').value);
+      localStorage.setItem('od1', document.getElementById('od1').value);
+      localStorage.setItem('os1', document.getElementById('os1').value);
+      localStorage.setItem('od2', document.getElementById('od2').value);
+      localStorage.setItem('os2', document.getElementById('os2').value);
+      localStorage.setItem('od3', document.getElementById('od3').value);
+      localStorage.setItem('os3', document.getElementById('os3').value);
+      localStorage.setItem('od4', document.getElementById('od4').value);
+      localStorage.setItem('os4', document.getElementById('os4').value);
+      localStorage.setItem('od5', (od5int.value >= 20 && od5int.value <= 30)?od5int.value+od5dec.value:0);
+      localStorage.setItem('os5', (os5int.value >= 20 && os5int.value <= 30)?os5int.value+os5dec.value:0);
+      localStorage.setItem('Y', year);
+      localStorage.setItem('M', month);
+      localStorage.setItem('report', '球面度數');
+      window.open('report.html');
+    }
+  </script>
+  </body>
+</html>
