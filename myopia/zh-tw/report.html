@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>eyeForm Report - Neurobit AI</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.513.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/main.js"></script>
+
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <py-config>
+      packages = ["pandas", "matplotlib"]
+
+      [[fetch]]
+      files = ["./data_to_plot.pkl"]
+    </py-config>
+  </head>
+  <body class="p-3 m-0 border-0 bd-example">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"><span id="site"></span>：<span id="medRecNo"></span></th>
+          <th scope="col">右眼（OD）</th>
+          <th scope="col">左眼（OS）</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider">
+        <tr>
+          <th scope="row">最佳矯正視力</th>
+          <td><span id="od1"></span></td>
+          <td><span id="os1"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">球面度數</th>
+          <td><span id="od2"></span></td>
+          <td><span id="os2"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">散光度數</th>
+          <td><span id="od3"></span></td>
+          <td><span id="os3"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">軸度</th>
+          <td><span id="od4"></span></td>
+          <td><span id="os4"></span></td>
+        </tr>
+        <tr>
+          <th scope="row">軸長(mm)</th>
+          <td><span id="od5"></span></td>
+          <td><span id="os5"></span></td>
+        </tr>
+      </tbody>
+      <tbody class="table-group-divider">
+        <tr>
+          <th scope="row">處置建議：<span id="suggestion"></span></th>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">危險度分析</th>
+          <td><span id="age"></span> / <span id="sex"></span></td>
+          <td><span id="now"></span></td>
+        </tr>
+        <tr>
+          <td colspan="3" align="left"><div id="advice"></div></td>
+        </tr>
+        <tr>
+          <td colspan="3" align="center"><div id="plot"></div></td>
+        </tr>
+        <tr>
+          <td colspan="3" align="center"><div id="table"></div></td>
+        </tr>
+      </tbody>
+      <tbody class="table-group-divider">
+        <tr>
+          <td colspan="3" align="center">版權聲明 © 2023 神經元科技股份有限公司 版權所有</td>
+        </tr>
+      </tbody>
+    </table>
+    <script>
+      now = new Date();
+      document.getElementById('now').innerHTML = now.toLocaleString();
+      document.getElementById('site').innerHTML = localStorage.getItem('site');
+      document.getElementById('medRecNo').innerHTML = localStorage.getItem('medRecNo');
+      sex = document.getElementById('sex').innerHTML = localStorage.getItem('sex');
+      age = document.getElementById('age').innerHTML = localStorage.getItem('age');
+      od1 = document.getElementById('od1').innerHTML = parseFloat(localStorage.getItem('od1')).toFixed(1);
+      os1 = document.getElementById('os1').innerHTML = parseFloat(localStorage.getItem('os1')).toFixed(1);
+      od2 = document.getElementById('od2').innerHTML = parseFloat(localStorage.getItem('od2')).toFixed(2);
+      os2 = document.getElementById('os2').innerHTML = parseFloat(localStorage.getItem('os2')).toFixed(2);
+      od3 = document.getElementById('od3').innerHTML = parseFloat(localStorage.getItem('od3')).toFixed(2);
+      os3 = document.getElementById('os3').innerHTML = parseFloat(localStorage.getItem('os3')).toFixed(2);
+      od4 = document.getElementById('od4').innerHTML = parseFloat(localStorage.getItem('od4'));
+      os4 = document.getElementById('os4').innerHTML = parseFloat(localStorage.getItem('os4'));
+      od5 = document.getElementById('od5').innerHTML = parseFloat(localStorage.getItem('od5')).toFixed(2);
+      os5 = document.getElementById('os5').innerHTML = parseFloat(localStorage.getItem('os5')).toFixed(2);
+      report = localStorage.getItem('report');
+      if (report == '軸長') {
+        y1 = parseFloat(od5);
+        y2 = parseFloat(os5);
+      }
+      if (report == '球面度數') {
+        y1 = parseFloat(od2);
+        y2 = parseFloat(os2);
+      }
+      Y = parseInt(localStorage.getItem('Y'));
+      M = parseInt(localStorage.getItem('M'));
+      features = [(sex=='男')?1:0, Y+M/12, od1, od2, od3, od4, os1, os2, os3, os4];
+      features = features.map(function(x) { return parseFloat(x); });
+      $.ajax({
+        url: 'https://aw7c8d4hh6.execute-api.ap-east-1.amazonaws.com/suggestion',
+        type: 'POST',
+        dataType: 'json',
+        data: JSON.stringify(features),
+        complete: function(data) {
+          suggestion = data['responseText'];
+          console.log(suggestion);
+          if (suggestion == '不處置') $('#suggestion').html('無需處置');
+          if (suggestion == '一般眼鏡') $('#suggestion').html('配戴一般眼鏡');
+          if (suggestion == '散瞳劑') $('#suggestion').html('點散瞳劑');
+          if (suggestion == '一般眼鏡散瞳劑') $('#suggestion').html('配戴一般眼鏡、點散瞳劑');
+          if (suggestion == '角膜塑型片') $('#suggestion').html('配戴角膜塑型片');
+        }
+      });
+      records = localStorage.getItem('records');
+    </script>
+    <py-script src="../plot.py"></py-script>
+    <py-script src="../table.py"></py-script>
+  </body>
+</html>
