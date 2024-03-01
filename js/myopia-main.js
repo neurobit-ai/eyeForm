@@ -33,7 +33,7 @@ $(function() {
 				submitHandler: function(form) {		
 					var $submit = $('.submitting'),
 						waitText = '上 傳 中 . . .';
-
+					$('#submit').prop('disabled', true);
 					$('#caseNo').prop('disabled', false);
 					$('#age').prop('disabled', false);
 					$('#odRisk').val(localStorage.getItem('右眼'));
